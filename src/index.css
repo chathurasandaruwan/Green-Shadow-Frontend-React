@@ -9,5 +9,164 @@
     i {
         @apply mr-2.5;
     }
+    /*----------navbar-css------------*/
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+    .navbar > .container,
+     .navbar > .container-fluid {
+         display: -ms-flexbox;
+         display: flex;
+         -ms-flex-wrap: wrap;
+         flex-wrap: wrap;
+         -ms-flex-align: center;
+         align-items: center;
+         -ms-flex-pack: justify;
+         justify-content: space-between;
+     }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        margin-left: 30px;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover, .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-logo {
+        @apply py-4 text-white;
+    }
+    .navbar-mainbg {
+        @apply bg-blue-700 p-0;
+    }
+    #navbarSupportedContent ul {
+        @apply m-0 p-0 ;
+    }
+    #navbarSupportedContent li {
+        @apply list-none float-left ;
+    }
+    #navbarSupportedContent ul li Link {
+        @apply text-white/50 text-[15px] block p-5 relative transition-all duration-[600ms] [transition-timing-function:cubic-bezier(0.68,-0.55,0.265,1.55)];
+    }
+    #navbarSupportedContent > ul > li.active > Link {
+        @apply text-[#5161ce] bg-transparent transition-all duration-[700ms]
+    }
+    #navbarSupportedContent .active > Link:not(:only-child):after {
+        transform: rotate(90deg);
+    }
+    .nav-link {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+        text-decoration: none;
+    }
+
+    .nav-link.disabled {
+        color: #6c757d;
+        pointer-events: none;
+        cursor: default;
+    }
+    .hori-selector {
+     @apply absolute top-0 left-0 h-full inline-block bg-white rounded-t-lg mt-2 transition-all duration-[600ms] ease-[cubic-bezier(0.68,-0.55,0.265,1.55)];
+    }
+    .hori-selector .right,
+    .hori-selector .left {
+        @apply absolute bottom-2 w-6 h-6 bg-white right-0;
+    }
+    .hori-selector .right {
+        @apply right-[-25px];
+    }
+    .hori-selector .left {
+        @apply left-[-25px];
+    }
+    .hori-selector .right:before,
+    .hori-selector .left:before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #5161ce;
+    }
+    .hori-selector .right:before {
+        @apply bottom-0 right-[-25px];
+    }
+    .hori-selector .left:before {
+        @apply bottom-0 left-[-25px];
+    }
+    .hiddenInput{
+        @apply hidden
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-custom {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+        .navbar-expand-custom .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+        .navbar-expand-custom .navbar-toggler {
+            display: none;
+        }
+        .navbar-expand-custom .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+    }
+    @media (max-width: 991px) {
+        #navbarSupportedContent ul li a {
+            padding: 12px 30px;
+        }
+        .hori-selector {
+            margin-top: 0px;
+            margin-left: 10px;
+            border-radius: 0;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+        .hori-selector .left,
+        .hori-selector .right {
+            right: 10px;
+        }
+        .hori-selector .left {
+            top: -25px;
+            left: auto;
+        }
+        .hori-selector .right {
+            bottom: -25px;
+        }
+        .hori-selector .left:before {
+            left: -25px;
+            top: -25px;
+        }
+        .hori-selector .right:before {
+            bottom: -25px;
+            left: -25px;
+        }
+    }
 
 }
