@@ -1,11 +1,27 @@
 import './App.css'
-import {Navigation} from "./component/Navigation.tsx";
+import {createBrowserRouter, RouterProvider} from "react-router";
+import {RootLayout} from "./component/RootLayout.tsx";
+import {Dashboard} from "./pages/Dashboard.tsx";
 
 function App() {
-
+    const routes = createBrowserRouter([
+        {
+            path: '',
+            element : <RootLayout/>,
+            children : [
+                { path : '', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>},
+                { path : '/', element : <Dashboard/>}
+            ]
+        },
+    ])
   return (
     <>
-      <Navigation/>
+        <RouterProvider router={routes} />
     </>
   )
 }
