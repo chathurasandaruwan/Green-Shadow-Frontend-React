@@ -19,22 +19,22 @@ export function Navigation() {
                             <Link className="nav-link" to='/'>Dashboard</Link>
                         </li>
                         <li className="nav-item ">
-                            <Link className="nav-link" to='/'>Crop Manage</Link>
+                            <Link className="nav-link" to='/crop'>Crop Manage</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Field Manage</Link>
+                            <Link className="nav-link" to='/field'>Field Manage</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Staff Manage</Link>
+                            <Link className="nav-link" to='/staff'>Staff Manage</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Vehicle Manage</Link>
+                            <Link className="nav-link" to='/vehicle'>Vehicle Manage</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Log Manage</Link>
+                            <Link className="nav-link" to='/log'>Log Manage</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Equipment Manage</Link>
+                            <Link className="nav-link" to='/equipment'>Equipment Manage</Link>
                         </li>
                     </ul>
                 </div>
