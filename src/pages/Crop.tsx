@@ -1,7 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Header} from "../component/Header.tsx";
-import {CustomerModel} from "../component/CustomerModel.tsx";
+import {CropModel} from "../component/CropModel.tsx";
 import {useState} from "react";
 export function Crop() {
     const [commonName, setCommonName] = useState("");
@@ -26,7 +26,7 @@ export function Crop() {
             <div className="container">
                 <Header>Crop</Header>
                 <div className="form-wrap">
-                    <CustomerModel
+                    <CropModel
                         commonName={commonName}
                         scientificName={scientificName}
                         category={category}
@@ -43,7 +43,7 @@ export function Crop() {
                         clearBtnOnAction={clearForm}
                     >
                         save
-                    </CustomerModel>
+                    </CropModel>
                 </div>
             </div>
         </section>

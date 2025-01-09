@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 
-export function CustomerModel(props: any) {
+export function CropModel(props: any) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleSeasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
