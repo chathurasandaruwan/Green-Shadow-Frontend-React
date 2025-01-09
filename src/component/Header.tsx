@@ -1,4 +1,4 @@
-export function Header(props: any, children: string) {
+export function Header(props: any) {
     return (
         <header className="header animatedBg rounded-4 shadow-lg">
             <h1 id="title" className="text-center">{props.children} Manage</h1>
