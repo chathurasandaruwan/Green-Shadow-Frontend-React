@@ -13,19 +13,34 @@ export function Crop() {
     function AddCrop() {
         console.log(commonName, scientificName, category, fieldName, selectedSeason, previewSrc);
     }
+    const clearForm = () => {
+        setCommonName("");
+        setScientificName("");
+        setCategory("");
+        setFieldName("");
+        setSelectedSeason("");
+        setPreviewSrc("");
+    };
     return (
         <section id="saveCrop">
             <div className="container">
                 <Header>Crop</Header>
                 <div className="form-wrap">
                     <CustomerModel
-                        addCropBtnOnAction={AddCrop}
+                        commonName={commonName}
+                        scientificName={scientificName}
+                        category={category}
+                        fieldName={fieldName}
+                        selectedSeason={selectedSeason}
+                        previewSrc={previewSrc}
                         setCommonName={setCommonName}
                         setScientificName={setScientificName}
                         setCategory={setCategory}
                         setFieldName={setFieldName}
                         setSelectedSeason={setSelectedSeason}
                         setPreviewSrc={setPreviewSrc}
+                        addCropBtnOnAction={AddCrop}
+                        clearBtnOnAction={clearForm}
                     >
                         save
                     </CustomerModel>
