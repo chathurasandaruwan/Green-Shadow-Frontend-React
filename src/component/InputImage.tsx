@@ -13,7 +13,7 @@ export function InputImage(props:any) {
     };
     return (
         <div className="form-group form-control-file">
-            <label htmlFor={props.id}>{props.children} Image</label>
+            <label htmlFor={props.id}>{props.children}</label>
             {props.previewSrc && <img id="previewImage" src={props.previewSrc} alt="Preview"/>}
             <input
                 type="file"

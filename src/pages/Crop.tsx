@@ -140,7 +140,7 @@ export function Crop() {
                                     fileInputRef={fileInputRef}
                                     setPreviewSrc={setPreviewSrc}
                                 >
-                                    Crop
+                                    Crop Image
                                 </InputImage>
                             </div>
                         </div>
@@ -148,12 +148,14 @@ export function Crop() {
                             <div className="col-md-4">
                                 <Button
                                     btnOnAction={AddCrop}
+                                    id="saveBtn"
                                     style={"btn-primary btn btn-block"}
                                 >
                                     Save
                                 </Button>
                                 <Button
                                     btnOnAction={clearForm}
+                                    id="btnClear"
                                     style={"btn btn-secondary btn-block"}
                                 >
                                     Clear

@@ -1,8 +1,18 @@
-import  { useEffect, useRef } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {Header} from "../component/Header.tsx";
+import {InputText} from "../component/InputText.tsx";
+import {InputImage} from "../component/InputImage.tsx";
+import {Button} from "../component/Button.tsx";
 export function Field() {
+    const fileInputRef1 = useRef<HTMLInputElement>(null);
+    const fileInputRef2 = useRef<HTMLInputElement>(null);
+    const [fieldName, setFieldName] = useState("");
+    const [extentSize, setExtentSizeTxt] = useState("");
+    const [previewSrc1, setPreviewSrc1]= useState("");
+    const [previewSrc2, setPreviewSrc2]= useState("");
+    const [location, setLocation] = useState("");
         const mapRef = useRef<HTMLDivElement | null>(null);
         useEffect(() => {
             if (!mapRef.current) return;
@@ -26,6 +36,7 @@ export function Field() {
                 const locationInput = document.getElementById('location') as HTMLInputElement;
                 if (locationInput) {
                     locationInput.value = `${latitude}, ${longitude}`;
+                    setLocation(`${latitude}, ${longitude}`);
                 }
 
                 // If a marker already exists, remove it
@@ -42,7 +53,26 @@ export function Field() {
                 map.remove();
             };
         }, []);
-
+    function AddField() {
+        console.log(fieldName, extentSize, previewSrc1, previewSrc2, location);
+        clearForm();
+    }
+    const clearForm = () => {
+        setFieldName("");
+        setExtentSizeTxt("");
+        setPreviewSrc1("");
+        setPreviewSrc2("");
+        setLocation("");
+        if (fileInputRef1.current) {
+            fileInputRef1.current.value = "";
+        }
+        if (fileInputRef2.current) {
+            fileInputRef2.current.value = "";
+        }
+    }
+    function deleteField() {
+        console.log("delete field");
+    }
     return (
         <>
             <section id="saveField">
@@ -52,38 +82,50 @@ export function Field() {
                         <form id="survey-form">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label id="field-name-label" htmlFor="fieldNameTxt">Field Name</label>
-                                        <input type="text" name="name" id="fieldNameTxt" placeholder="Enter field name"
-                                               className="form-control" required/>
-                                    </div>
+                                    <InputText
+                                        type="text"
+                                        id="fieldNameTxt"
+                                        placeholder="Enter field name"
+                                        item={fieldName}
+                                        setItems={setFieldName}
+                                    >
+                                        Field Name
+                                    </InputText>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label id="Sc-name-label" htmlFor="extentSizeTxt">Extent Size</label>
-                                        <input type="text" name="name" id="extentSizeTxt"
-                                               placeholder="Enter Extent Size" className="form-control" required/>
-                                    </div>
+                                    <InputText
+                                        type="text"
+                                        id="extentSizeTxt"
+                                        placeholder="Enter extent size"
+                                        item={extentSize}
+                                        setItems={setExtentSizeTxt}
+                                    >
+                                        Extent Size
+                                    </InputText>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="form-group form-control-file">
-                                        {/*image1*/}
-                                        <label htmlFor="fieldImgSelector1">Field Image 01</label>
-                                        <img id="previewImage1" src="" alt="Preview"/>
-                                        <input type="file" name="cropImg" id="fieldImgSelector1"
-                                               className="form-control" required/>
-                                    </div>
+                                    {/*image1*/}
+                                    <InputImage
+                                        id="fieldImgSelector1"
+                                        fileInputRef={fileInputRef1}
+                                        previewSrc={previewSrc1}
+                                        setPreviewSrc={setPreviewSrc1}
+                                    >
+                                        Field Image 01
+                                    </InputImage>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="form-group form-control-file">
-                                        {/*image2*/}
-                                        <label htmlFor="fieldImgSelector2">Field Image 02</label>
-                                        <img id="previewImage2" src="" alt="Preview"/>
-                                        <input type="file" name="cropImg" id="fieldImgSelector2"
-                                               className="form-control" required/>
-                                    </div>
+                                    {/*image2*/}
+                                    <InputImage
+                                        id="fieldImgSelector2"
+                                        fileInputRef={fileInputRef2}
+                                        previewSrc={previewSrc2}
+                                        setPreviewSrc={setPreviewSrc2}
+                                    >
+                                        Field Image 02
+                                    </InputImage>
                                 </div>
                             </div>
                             <div className="row">
@@ -93,23 +135,40 @@ export function Field() {
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label id="location-label" htmlFor="location">Location</label>
-                                        <input type="text" name="name" id="location" placeholder="Enter Location"
-                                               className="form-control" disabled/>
-                                    </div>
+                                    <InputText
+                                        type="text"
+                                        id="location"
+                                        placeholder="Enter Location"
+                                        item={location}
+                                    >
+                                        Location
+                                    </InputText>
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-md-4">
-                                    <button type="button" id="btnSave" className="btn btn-primary btn-block">Save
-                                    </button>
-                                    <button type="button" id="fieldDeleteBtn"
-                                            className="btn btn-danger btn-block">Delete
-                                    </button>
-                                    <button type="button" id="btnClear" className="btn btn-secondary btn-block">Clear
-                                    </button>
+                                    <Button
+                                        btnOnAction={AddField}
+                                        id="saveBtn"
+                                        style={"btn-primary btn btn-block"}
+                                    >
+                                        Save
+                                    </Button>
+                                    <Button
+                                        btnOnAction={deleteField}
+                                        id="fieldDeleteBtn"
+                                        style={"btn btn-danger btn-block"}
+                                    >
+                                        Delete
+                                    </Button>
+                                    <Button
+                                        btnOnAction={clearForm}
+                                        id="btnClear"
+                                        style={"btn btn-secondary btn-block"}
+                                    >
+                                        Clear
+                                    </Button>
                                 </div>
                             </div>
 

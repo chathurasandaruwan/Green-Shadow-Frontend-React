@@ -9,6 +9,7 @@ export function InputText(props:any) {
                 className="form-control"
                 required
                 value={props.item}
+                disabled={props.disable}
                 onChange={(e) => props.setItems(e.target.value)}
             />
         </div>
