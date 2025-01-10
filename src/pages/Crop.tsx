@@ -139,7 +139,6 @@ export function Crop() {
                                     id="cropImgSelector"
                                     fileInputRef={fileInputRef}
                                     setPreviewSrc={setPreviewSrc}
-                                    // handleImageChange={handleImageChange}
                                 >
                                     Crop
                                 </InputImage>
