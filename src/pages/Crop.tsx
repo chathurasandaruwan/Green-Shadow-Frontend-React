@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Header} from "../component/Header.tsx";
 import {useRef, useState} from "react";
 import {Button} from "../component/Button.tsx";
+import {InputText} from "../component/InputText.tsx";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -54,32 +55,26 @@ export function Crop() {
                     <form id="survey-form">
                         <div className="row">
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <label id="Co-name-label" htmlFor="commonNameTxt">Common Name</label>
-                                    <input
-                                        type="text"
-                                        id="commonNameTxt"
-                                        placeholder="Enter common name"
-                                        className="form-control"
-                                        required
-                                        value={commonName}
-                                        onChange={(e) => setCommonName(e.target.value)}
-                                    />
-                                </div>
+                                <InputText
+                                    type="text"
+                                    id="commonNameTxt"
+                                    placeholder="Enter common name"
+                                    item={commonName}
+                                    setItems={setCommonName}
+                                >
+                                    Common Name
+                                </InputText>
                             </div>
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <label id="Sc-name-label" htmlFor="scientificNameTxt">Scientific Name</label>
-                                    <input
-                                        type="text"
-                                        id="scientificNameTxt"
-                                        placeholder="Enter scientific name"
-                                        className="form-control"
-                                        required
-                                        value={scientificName}
-                                        onChange={(e) => setScientificName(e.target.value)}
-                                    />
-                                </div>
+                                <InputText
+                                    type="text"
+                                    id="scientificNameTxt"
+                                    placeholder="Enter scientific name"
+                                    item={scientificName}
+                                    setItems={setScientificName}
+                                >
+                                    Scientific Name
+                                </InputText>
                             </div>
                         </div>
                         <div className="row">
