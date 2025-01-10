@@ -6,6 +6,7 @@ import {Button} from "../component/Button.tsx";
 import {InputText} from "../component/InputText.tsx";
 import {Select} from "../component/Select.tsx";
 import {InputImage} from "../component/InputImage.tsx";
+import {InputRadio} from "../component/InputRadio.tsx";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -30,24 +31,6 @@ export function Crop() {
             fileInputRef.current.value = "";
         }
     };
-    const handleSeasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setSelectedSeason(value);
-    };
-
-    /*const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                if (reader.result) {
-                    setPreviewSrc(reader.result as string);
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-    };*/
-
     return (
         <section id="saveCrop">
             <div className="container">
@@ -119,45 +102,33 @@ export function Crop() {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label>What is the crop season?</label>
-                                    <div className="custom-control custom-radio custom-control-inline">
-                                        <input
-                                            type="radio"
-                                            id="customRadioInline1"
-                                            name="season"
-                                            value="Yala"
-                                            className="custom-control-input"
-                                            checked={selectedSeason === "Yala"}
-                                            onChange={handleSeasonChange}
-                                        />
-                                        <label className="custom-control-label"
-                                               htmlFor="customRadioInline1">Yala</label>
-                                    </div>
-                                    <div className="custom-control custom-radio custom-control-inline">
-                                        <input
-                                            type="radio"
-                                            id="customRadioInline2"
-                                            name="season"
-                                            value="Maha"
-                                            className="custom-control-input"
-                                            checked={selectedSeason === "Maha"}
-                                            onChange={handleSeasonChange}
-                                        />
-                                        <label className="custom-control-label"
-                                               htmlFor="customRadioInline2">Maha</label>
-                                    </div>
-                                    <div className="custom-control custom-radio custom-control-inline">
-                                        <input
-                                            type="radio"
-                                            id="customRadioInline3"
-                                            name="season"
-                                            value="Other"
-                                            className="custom-control-input"
-                                            checked={selectedSeason === "Other"}
-                                            onChange={handleSeasonChange}
-                                        />
-                                        <label className="custom-control-label"
-                                               htmlFor="customRadioInline3">Other</label>
-                                    </div>
+                                    <InputRadio
+                                        setSelectedSeason={setSelectedSeason}
+                                        id="customRadioInline1"
+                                        name="season"
+                                        value="Yala"
+                                        selectedSeason={selectedSeason}
+                                    >
+                                        Yala
+                                    </InputRadio>
+                                    <InputRadio
+                                        setSelectedSeason={setSelectedSeason}
+                                        id="customRadioInline2"
+                                        name="season"
+                                        value="Maha"
+                                        selectedSeason={selectedSeason}
+                                    >
+                                        Maha
+                                    </InputRadio>
+                                    <InputRadio
+                                        setSelectedSeason={setSelectedSeason}
+                                        id="customRadioInline3"
+                                        name="season"
+                                        value="Other"
+                                        selectedSeason={selectedSeason}
+                                    >
+                                        Other
+                                    </InputRadio>
                                 </div>
                             </div>
                         </div>
