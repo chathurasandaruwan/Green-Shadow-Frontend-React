@@ -1,14 +1,12 @@
-import {useRef, useState} from "react";
-
 export function CropModel(props: any) {
-    const fileInputRef = useRef<HTMLInputElement>(null);
+
 
     const handleSeasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         props.setSelectedSeason(value);
     };
 
-    const [previewSrc, setPreviewSrc] = useState<string>("");
+    // const [previewSrc, setPreviewSrc] = useState<string>("");
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -16,20 +14,13 @@ export function CropModel(props: any) {
             const reader = new FileReader();
             reader.onload = () => {
                 if (reader.result) {
-                    setPreviewSrc(reader.result as string);
+                    // setPreviewSrc(reader.result as string);
                     props.setPreviewSrc(reader.result as string);
                 }
             };
             reader.readAsDataURL(file);
         }
     };
-    const clearBtnOnAction = () => {
-        setPreviewSrc("");
-        if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-        }
-        props.clearBtnOnAction();
-    }
     return (
         <form id="survey-form">
             <div className="row">
@@ -152,13 +143,13 @@ export function CropModel(props: any) {
                 <div className="col-md-6">
                     <div className="form-group form-control-file">
                         <label htmlFor="cropImgSelector">Crop Image</label>
-                        {previewSrc && <img id="previewImage" src={previewSrc} alt="Preview" />}
+                        {props.previewSrc && <img id="previewImage" src={props.previewSrc} alt="Preview" />}
                         <input
                             type="file"
                             id="cropImgSelector"
                             className="form-control"
                             required
-                            ref={fileInputRef}
+                            ref={props.fileInputRef}
                             onChange={handleImageChange}
                         />
                     </div>
@@ -178,7 +169,7 @@ export function CropModel(props: any) {
                         type="button"
                         id="btnClear"
                         className="btn btn-secondary btn-block"
-                        onClick={clearBtnOnAction}
+                        onClick={props.clearBtnOnAction}
                     >
                         Clear
                     </button>
