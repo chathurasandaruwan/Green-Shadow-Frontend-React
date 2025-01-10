@@ -4,6 +4,7 @@ import {Header} from "../component/Header.tsx";
 import {useRef, useState} from "react";
 import {Button} from "../component/Button.tsx";
 import {InputText} from "../component/InputText.tsx";
+import {Select} from "../component/Select.tsx";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -79,45 +80,39 @@ export function Crop() {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <label htmlFor="dropdownCategory">Category</label>
-                                    <select
-                                        id="dropdownCategory"
-                                        className="form-control"
-                                        required
-                                        value={category}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                    >
-                                        <option value="" disabled>Select Category</option>
-                                        <option value="Rice">Rice</option>
-                                        <option value="Cow-pea">Cow-pea</option>
-                                        <option value="Green-gram">Green-gram</option>
-                                        <option value="Chickpea">Chickpea</option>
-                                        <option value="Sweet-potato">Sweet-potato</option>
-                                        <option value="Reddish">Reddish</option>
-                                        <option value="Cassava">Cassava</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
+                                <Select
+                                    id="dropdownCategory"
+                                    value={category}
+                                    setItems={setCategory}
+                                    options={[
+                                        { value: "Rice", name: "Rice" },
+                                        { value: "Cow-pea", name: "Cow-pea" },
+                                        { value: "Green-gram", name: "Green-gram" },
+                                        { value: "Chickpea", name: "Chickpea" },
+                                        { value: "Sweet-potato", name: "Sweet-potato" },
+                                        { value: "Reddish", name: "Reddish" },
+                                        { value: "Cassava", name: "Cassava" },
+                                        { value: "Other", name: "Other" },
+                                    ]}
+                                >
+                                    Category
+                                </Select>
                             </div>
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <label htmlFor="dropdownFieldName">Field Name</label>
-                                    <select
-                                        id="dropdownFieldName"
-                                        className="form-control"
-                                        required
-                                        value={fieldName}
-                                        onChange={(e) => setFieldName(e.target.value)}
-                                    >
-                                        <option value="" disabled>Select Field Name</option>
-                                        <option value="field1">Field1</option>
-                                        <option value="field2">Field2</option>
-                                        <option value="field3">Field3</option>
-                                        <option value="field4">Field4</option>
-                                        <option value="field5">Field5</option>
-                                    </select>
-                                </div>
+                                <Select
+                                    id="dropdownFieldName"
+                                    value={fieldName}
+                                    setItems={setFieldName}
+                                    options={[
+                                        { value: "field1", name: "field1" },
+                                        { value: "field2", name: "field2" },
+                                        { value: "field3", name: "field3" },
+                                        { value: "field4", name: "field4" },
+                                        { value: "field5", name: "field5" },
+                                    ]}
+                                >
+                                    Field Name
+                                </Select>
                             </div>
                         </div>
                         <div className="row">
