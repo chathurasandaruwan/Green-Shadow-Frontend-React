@@ -5,6 +5,7 @@ import {useRef, useState} from "react";
 import {Button} from "../component/Button.tsx";
 import {InputText} from "../component/InputText.tsx";
 import {Select} from "../component/Select.tsx";
+import {InputImage} from "../component/InputImage.tsx";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -34,19 +35,18 @@ export function Crop() {
         setSelectedSeason(value);
     };
 
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    /*const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
                 if (reader.result) {
-                    // setPreviewSrc(reader.result as string);
                     setPreviewSrc(reader.result as string);
                 }
             };
             reader.readAsDataURL(file);
         }
-    };
+    };*/
 
     return (
         <section id="saveCrop">
@@ -163,18 +163,15 @@ export function Crop() {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <div className="form-group form-control-file">
-                                    <label htmlFor="cropImgSelector">Crop Image</label>
-                                    {previewSrc && <img id="previewImage" src={previewSrc} alt="Preview"/>}
-                                    <input
-                                        type="file"
-                                        id="cropImgSelector"
-                                        className="form-control"
-                                        required
-                                        ref={fileInputRef}
-                                        onChange={handleImageChange}
-                                    />
-                                </div>
+                                <InputImage
+                                    previewSrc={previewSrc}
+                                    id="cropImgSelector"
+                                    fileInputRef={fileInputRef}
+                                    setPreviewSrc={setPreviewSrc}
+                                    // handleImageChange={handleImageChange}
+                                >
+                                    Crop
+                                </InputImage>
                             </div>
                         </div>
                         <div className="row">
