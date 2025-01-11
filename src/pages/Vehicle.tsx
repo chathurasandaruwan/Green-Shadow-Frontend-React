@@ -2,6 +2,7 @@ import {InputText} from "../component/InputText.tsx";
 import {useState} from "react";
 import {Header} from "../component/Header.tsx";
 import {Button} from "../component/Button.tsx";
+import {Select} from "../component/Select.tsx";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -61,32 +62,39 @@ export function Vehicle() {
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label htmlFor="dropdownCategory">Category</label>
-                                        <select id="dropdownCategory" name="category" className="form-control" required>
-                                            <option value="" disabled selected hidden>Select Category</option>
-                                            <option value="Car">Car</option>
-                                            <option value="Van">Van</option>
-                                            <option value="Motorbikes">Motorbikes</option>
-                                            <option value="Tractors–Land-masters">Tractors–Land-masters</option>
-                                            <option value="Tractors-4WD">Tractors-4WD</option>
-                                            <option value="Tankers-truck">Tankers-truck</option>
-                                            <option value="Land-vehicles">Land-vehicles</option>
-                                            <option value="Lorry">Lorry</option>
-                                        </select>
-                                    </div>
+                                    <Select
+                                        id="dropdownCategory"
+                                        value={category}
+                                        setItems={setCategory}
+                                        options={[
+                                            {value: "Car", name: "Car"},
+                                            {value: "Van", name: "Van"},
+                                            {value: "Motorbikes", name: "Motorbikes"},
+                                            {value: "Tractors–Land-masters", name: "Tractors–Land-masters"},
+                                            {value: "Tractors-4WD", name: "Tractors-4WD"},
+                                            {value: "Tankers-truck", name: "Tankers-truck"},
+                                            {value: "Land-vehicles", name: "Land-vehicles"},
+                                            {value: "Lorry", name: "Lorry"},
+                                        ]}
+                                    >
+                                        Category
+                                    </Select>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label htmlFor="fuelTypedName">Fuel type</label>
-                                        <select id="fuelTypedName" name="fieldName" className="form-control" required>
-                                            <option value="" disabled selected hidden>Select Fuel type</option>
-                                            <option value="Petrol">Petrol</option>
-                                            <option value="Diesel">Diesel</option>
-                                            <option value="Electric">Electric</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                        </select>
-                                    </div>
+                                    <Select
+                                        id="fuelTypedName"
+                                        value={fuelTypedName}
+                                        setItems={setFuelTypedName}
+                                        options={[
+                                            {value: "Petrol", name: "Petrol"},
+                                            {value: "Diesel", name: "Diesel"},
+                                            {value: "Electric", name: "Electric"},
+                                            {value: "Hybrid", name: "Hybrid"},
+                                        ]}
+                                    >
+                                        Fuel type
+                                    </Select>
+
                                 </div>
                             </div>
                             <div className="row">
@@ -112,12 +120,20 @@ export function Vehicle() {
                             <div id="staffSelectCard" className="row">
                                 <h4 className="text-center text-black-50"><b>Select Staff here..</b></h4>
                                 <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label htmlFor="dropdownStaffName">Staff Name</label>
-                                        <select id="dropdownStaffName" name="staffName" className="form-control"
-                                                required>
-                                        </select>
-                                    </div>
+                                    <Select
+                                        id="dropdownStaffName"
+                                        value={staffName}
+                                        setItems={setStaffName}
+                                        options={[
+                                            {value: "Staff 1", name: "Staff 1"},
+                                            {value: "Staff 2", name: "Staff 2"},
+                                            {value: "Staff 3", name: "Staff 3"},
+                                            {value: "Staff 4", name: "Staff 4"},
+                                            {value: "Staff 5", name: "Staff 5"},
+                                        ]}
+                                    >
+                                        Staff Name
+                                    </Select>
                                 </div>
                                 <div className="col-md-6">
                                     <InputText
