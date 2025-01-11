@@ -140,6 +140,7 @@ export function Field() {
                                         id="location"
                                         placeholder="Enter Location"
                                         item={location}
+                                        disable={true}
                                     >
                                         Location
                                     </InputText>
