@@ -1,5 +1,7 @@
 import {InputText} from "../component/InputText.tsx";
 import {useState} from "react";
+import {Header} from "../component/Header.tsx";
+import {Button} from "../component/Button.tsx";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -7,20 +9,30 @@ export function Vehicle() {
     const [category, setCategory] = useState("");
     const [fuelTypedName, setFuelTypedName] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("");
-    const [staffName, setstaffName] = useState("");
+    const [staffName, setStaffName] = useState("");
     const [staffLastName, setStaffLastName] = useState("");
     const [staffContactNo, setStaffContactNo] = useState("");
     const [staffDesignation, setStaffDesignation] = useState("");
+
+    function AddVehicle() {
+        console.log(licensePlateNum, remarks, category, fuelTypedName, selectedStatus, staffName, staffLastName, staffContactNo, staffDesignation);
+    }
+    const clearForm = () => {
+        setLicensePlateNum("");
+        setRemarksTxt("");
+        setCategory("");
+        setFuelTypedName("");
+        setSelectedStatus("");
+        setStaffName("");
+        setStaffLastName("");
+        setStaffContactNo("");
+        setStaffDesignation("");
+    }
     return (
         <>
             <section id="saveVehicle">
                 <div className="container">
-                    <header className="header animatedBg rounded-4 shadow-lg">
-                        <h1 id="title" className="text-center">Vehicle Manage</h1>
-                        <p id="description" className="text-center">
-                            Please use this form to fill out your vehicle details.
-                        </p>
-                    </header>
+                    <Header>Vehicle</Header>
                     <div className="form-wrap">
                         <form id="survey-form">
                             <div className="row">
@@ -141,10 +153,16 @@ export function Vehicle() {
 
                             <div className="row">
                                 <div className="col-md-4">
-                                    <button type="button" id="btnSave" className="btn btn-primary btn-block">Save
-                                    </button>
-                                    <button type="button" id="btnClear" className="btn btn-secondary btn-block">Clear
-                                    </button>
+                                    <Button
+                                        id="btnSave"
+                                        style="btn btn-primary btn-block"
+                                        btnOnAction={AddVehicle}
+                                    >Save</Button>
+                                    <Button
+                                        id="btnClear"
+                                        style="btn btn-secondary btn-block"
+                                        btnOnAction={clearForm}
+                                    >Clear</Button>
                                 </div>
                             </div>
 
