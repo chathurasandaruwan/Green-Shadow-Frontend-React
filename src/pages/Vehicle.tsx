@@ -3,6 +3,7 @@ import {useState} from "react";
 import {Header} from "../component/Header.tsx";
 import {Button} from "../component/Button.tsx";
 import {Select} from "../component/Select.tsx";
+import {InputRadio} from "../component/InputRadio.tsx";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -102,18 +103,24 @@ export function Vehicle() {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>What is the vehicle status ?</label>
-                                        <div className="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="customRadioInline1" name="customRadioInline1"
-                                                   value="Available" className="custom-control-input"/>
-                                            <label className="custom-control-label"
-                                                   htmlFor="customRadioInline1">Available</label>
-                                        </div>
-                                        <div className="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="customRadioInline2" name="customRadioInline1"
-                                                   value="NotAvailable" className="custom-control-input"/>
-                                            <label className="custom-control-label"
-                                                   htmlFor="customRadioInline2">NotAvailable</label>
-                                        </div>
+                                        <InputRadio
+                                            setSelectedSeason={setSelectedStatus}
+                                            id="customRadioInline1"
+                                            name="customRadioInline1"
+                                            value="Available"
+                                            selectedSeason={selectedStatus}
+                                        >
+                                            Available
+                                        </InputRadio>
+                                        <InputRadio
+                                            setSelectedSeason={setSelectedStatus}
+                                            id="customRadioInline1"
+                                            name="customRadioInline1"
+                                            value="NotAvailable"
+                                            selectedSeason={selectedStatus}
+                                        >
+                                            NotAvailable
+                                        </InputRadio>
                                     </div>
                                 </div>
                             </div>
