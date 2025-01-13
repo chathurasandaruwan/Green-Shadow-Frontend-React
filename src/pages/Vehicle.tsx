@@ -18,6 +18,7 @@ export function Vehicle() {
 
     function AddVehicle() {
         console.log(licensePlateNum, remarks, category, fuelTypedName, selectedStatus, staffName, staffLastName, staffContactNo, staffDesignation);
+        clearForm();
     }
     const clearForm = () => {
         setLicensePlateNum("");
