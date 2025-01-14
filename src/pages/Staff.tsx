@@ -95,6 +95,22 @@ export function Staff() {
             alert('Delete');
         }
     }
+    function clearAction() {
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setContactNo("");
+        setDOB("");
+        setDateOfJoining("");
+        setAddress1("");
+        setAddress2("");
+        setAddress3("");
+        setAddress4("");
+        setAddress5("");
+        setGender("");
+        setDesignation("");
+        setRole("");
+    }
     return (
         <>
             <section id="crudCard">
@@ -150,7 +166,36 @@ export function Staff() {
                 clearButtonClass={modalConfig.clearButtonClass}
                 onClose={closeModal}
                 onSave={saveAction}
-                onClear={() => alert('Clear button clicked')}
+                onClear={clearAction}
+                firstName={firstName}
+                lastName={lastName}
+                email={email}
+                contactNo={contactNo}
+                DOB={DOB}
+                dateOfJoining={dateOfJoining}
+                address1={address1}
+                address2={address2}
+                address3={address3}
+                address4={address4}
+                address5={address5}
+                gender={gender}
+                designation={designation}
+                role={role}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                setEmail={setEmail}
+                setContactNo={setContactNo}
+                setDOB={setDOB}
+                setDateOfJoining={setDateOfJoining}
+                setAddress1={setAddress1}
+                setAddress2={setAddress2}
+                setAddress3={setAddress3}
+                setAddress4={setAddress4}
+                setAddress5={setAddress5}
+                setGender={setGender}
+                setDesignation={setDesignation}
+                setRole={setRole}
+
             >
             </StaffModal>
         </>
