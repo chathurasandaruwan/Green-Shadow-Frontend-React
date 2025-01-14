@@ -4,6 +4,20 @@ import {useState} from "react";
 import {StaffModal} from "../component/StaffModal.tsx";
 
 export function Staff() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [contactNo, setContactNo] = useState('');
+    const [DOB, setDOB] = useState('');
+    const [dateOfJoining, setDateOfJoining] = useState('');
+    const [address1, setAddress1] = useState('');
+    const [address2, setAddress2] = useState('');
+    const [address3, setAddress3] = useState('');
+    const [address4, setAddress4] = useState('');
+    const [address5, setAddress5] = useState('');
+    const [gender, setGender] = useState('');
+    const [designation, setDesignation] = useState('');
+    const [role, setRole] = useState('');
     const [modalConfig, setModalConfig] = useState({
         isVisible: false,
         title: '',
