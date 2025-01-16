@@ -1,6 +1,7 @@
 import {Button} from "./Button.tsx";
 import {InputText} from "./InputText.tsx";
 import {Select} from "./Select.tsx";
+import {InputAddress} from "./InputAddress.tsx";
 
 export function StaffModal(props: any) {
     return (
@@ -112,16 +113,36 @@ export function StaffModal(props: any) {
                                         <div className="col-md-6">
                                             <div className="form-group ">
                                                 <label htmlFor="inputAD1">Address</label>
-                                                <input type="text" className="form-control" id="inputAD1"
-                                                       placeholder="No-"/>
-                                                <input type="text" className="form-control" id="inputAD5"
-                                                       placeholder="Postal code"/>
-                                                <input type="text" className="form-control" id="inputAD2"
-                                                       placeholder="lane"/>
-                                                <input type="text" className="form-control" id="inputAD4"
-                                                       placeholder="State"/>
-                                                <input type="text" className="form-control" id="inputAD3"
-                                                       placeholder="City"/>
+                                                <InputAddress
+                                                    id="inputAD1"
+                                                    item={props.address1}
+                                                    setItems={props.setAddress1}
+                                                    placeholder="No-"
+                                                />
+                                                <InputAddress
+                                                    id="inputAD5"
+                                                    item={props.address5}
+                                                    setItems={props.setAddress5}
+                                                    placeholder="Postal code"
+                                                />
+                                                <InputAddress
+                                                    id="inputAD2"
+                                                    item={props.address2}
+                                                    setItems={props.setAddress2}
+                                                    placeholder="lane"
+                                                />
+                                                <InputAddress
+                                                    id="inputAD4"
+                                                    item={props.address4}
+                                                    setItems={props.setAddress4}
+                                                    placeholder="State"
+                                                />
+                                                <InputAddress
+                                                    id="inputAD3"
+                                                    item={props.address3}
+                                                    setItems={props.setAddress3}
+                                                    placeholder="City"
+                                                />
                                             </div>
                                         </div>
                                         <div className="col-md-6">
