@@ -1,4 +1,5 @@
 import {Button} from "./Button.tsx";
+import {InputText} from "./InputText.tsx";
 
 export function StaffModal(props: any) {
     return (
@@ -36,52 +37,74 @@ export function StaffModal(props: any) {
                                 <form id="survey-form">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label htmlFor="firstNameTxt">First Name</label>
-                                                <input type="text" name="firstName" id="firstNameTxt"
-                                                       placeholder="Enter First Name" className="form-control"
-                                                       required/>
-                                            </div>
+                                            <InputText
+                                                id="firstNameTxt"
+                                                placeholder="Enter First Name"
+                                                type="text"
+                                                item={props.firstName}
+                                                setItems={props.setFirstName}
+                                            >
+                                                First Name
+                                            </InputText>
                                         </div>
                                         <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label id="Sc-name-label" htmlFor="lastNameTxt">Last Name</label>
-                                                <input type="text" name="lastName" id="lastNameTxt"
-                                                       placeholder="Enter Last Name" className="form-control" required/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label htmlFor="emailTxt">Email</label>
-                                                <input type="email" name="email" id="emailTxt" placeholder="Enter Email"
-                                                       className="form-control" required/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label id="contactNo-label" htmlFor="contactNoTxt">Contact No</label>
-                                                <input type="tel" name="contactNo" id="contactNoTxt"
-                                                       placeholder="Enter Contact No" className="form-control"
-                                                       required/>
-                                            </div>
+                                            <InputText
+                                                id="lastNameTxt"
+                                                placeholder="Enter Last Name"
+                                                type="text"
+                                                item={props.lastName}
+                                                setItems={props.setLastName}
+                                            >
+                                                Last Name
+                                            </InputText>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label htmlFor="dateOfBirthTxt">Date of Birth</label>
-                                                <input type="date" id="dateOfBirthTxt" className="form-control"
-                                                       required/>
-                                            </div>
+                                            <InputText
+                                                id="emailTxt"
+                                                placeholder="Enter Email"
+                                                type="email"
+                                                item={props.email}
+                                                setItems={props.setEmail}
+                                            >
+                                                Email
+                                            </InputText>
                                         </div>
                                         <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label htmlFor="dateOfJoiningTxt">Date of Joining</label>
-                                                <input type="date" id="dateOfJoiningTxt" className="form-control"
-                                                       required/>
-                                            </div>
+                                            <InputText
+                                                id="contactNoTxt"
+                                                placeholder="Enter Contact No"
+                                                type="tel"
+                                                item={props.contactNo}
+                                                setItems={props.setContactNo}
+                                            >
+                                                Contact No
+                                            </InputText>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <InputText
+                                                id="dateOfBirthTxt"
+                                                placeholder="Enter Date of Birth"
+                                                type="date"
+                                                item={props.DOB}
+                                                setItems={props.setDOB}
+                                            >
+                                                Date of Birth
+                                            </InputText>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <InputText
+                                                id="dateOfJoiningTxt"
+                                                placeholder="Enter Date of Joining"
+                                                type="date"
+                                                item={props.dateOfJoining}
+                                                setItems={props.setDateOfJoining}
+                                            >
+                                                Date of Joining
+                                            </InputText>
                                         </div>
                                     </div>
                                     <div className="row">

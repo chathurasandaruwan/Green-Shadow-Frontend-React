@@ -89,6 +89,7 @@ export function Staff() {
     function saveAction() {
         if (modalConfig.saveButtonText === 'Save') {
             alert('Save');
+            console.log(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role);
         } else if (modalConfig.saveButtonText === 'Update') {
             alert('Update');
         } else {
@@ -195,7 +196,6 @@ export function Staff() {
                 setGender={setGender}
                 setDesignation={setDesignation}
                 setRole={setRole}
-
             >
             </StaffModal>
         </>
