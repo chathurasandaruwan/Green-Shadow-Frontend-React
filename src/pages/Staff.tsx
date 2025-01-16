@@ -27,6 +27,8 @@ export function Staff() {
         saveButtonClass: {},
         closeButtonClass: {},
         clearButtonClass: {},
+        SearchCardStyle: {},
+        SearchCardHeaderStyle: {},
     });
 
     function openModel(type: string) {
@@ -41,6 +43,8 @@ export function Staff() {
                     saveButtonClass: 'btn btn-primary btn-block',
                     closeButtonClass: 'btn btn-danger',
                     clearButtonClass: 'btn btn-secondary btn-block',
+                    SearchCardStyle: {display: "none"},
+                    SearchCardHeaderStyle: {},
                 });
                 break;
             case 'update':
@@ -53,6 +57,8 @@ export function Staff() {
                     saveButtonClass: 'btn-warning btn btn-block',
                     closeButtonClass: 'btn btn-danger',
                     clearButtonClass: 'btn btn-secondary btn-block',
+                    SearchCardStyle: {},
+                    SearchCardHeaderStyle: {background: "linear-gradient(to right, #f1b44d, #d69438)"},
                 });
                 break;
             case 'delete':
@@ -65,6 +71,8 @@ export function Staff() {
                     saveButtonClass: 'btn-danger btn btn-block',
                     closeButtonClass: 'btn btn-secondary',
                     clearButtonClass: 'hidden',
+                    SearchCardStyle: {},
+                    SearchCardHeaderStyle: {background: "linear-gradient(to right, #f36a6a, #d33f3f)"},
                 });
                 break;
             case 'search':
@@ -77,6 +85,8 @@ export function Staff() {
                     saveButtonClass: 'hidden',
                     closeButtonClass: 'btn btn-danger',
                     clearButtonClass: 'btn btn-secondary btn-block',
+                    SearchCardStyle: {},
+                    SearchCardHeaderStyle: {background: "linear-gradient(to right, #5cb385, #4b946e)"},
                 });
                 break;
             default:
@@ -165,6 +175,8 @@ export function Staff() {
                 saveButtonClass={modalConfig.saveButtonClass}
                 closeButtonClass={modalConfig.closeButtonClass}
                 clearButtonClass={modalConfig.clearButtonClass}
+                SearchCardStyle={modalConfig.SearchCardStyle}
+                SearchCardHeaderStyle={modalConfig.SearchCardHeaderStyle}
                 onClose={closeModal}
                 onSave={saveAction}
                 onClear={clearAction}

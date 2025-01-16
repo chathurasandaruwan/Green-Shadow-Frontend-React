@@ -20,8 +20,8 @@ export function StaffModal(props: any) {
                     <div className="modal-body">
                     <div className="container">
                             <div className="form-wrap-staff">
-                                {/*<div id="custSearchCardBody" className="card">
-                                    <div className="card-header custSearchCardHeader">
+                                <div id="custSearchCardBody" className={'card'} style={props.SearchCardStyle}>
+                                    <div className="card-header custSearchCardHeader" style={props.SearchCardHeaderStyle}>
                                         <b>Search Staff By name</b>
                                     </div>
                                     <div className="card-body">
@@ -35,7 +35,7 @@ export function StaffModal(props: any) {
                                         </div>
                                         <ul id="suggestions" className="list-group"></ul>
                                     </div>
-                                </div>*/}
+                                </div>
                                 <form id="survey-form">
                                     <div className="row">
                                         <div className="col-md-6">
