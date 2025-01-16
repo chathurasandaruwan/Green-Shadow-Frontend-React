@@ -2,12 +2,45 @@ import {Button} from "./Button.tsx";
 import {InputText} from "./InputText.tsx";
 import {Select} from "./Select.tsx";
 import {InputAddress} from "./InputAddress.tsx";
+import React, {useState} from "react";
 
 export function StaffModal(props: any) {
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const staffNames = ["Alice Johnson", "Bob Smith", "Charlie Brown", "Diana Prince", "Eve Adams"];
 
     const handelSearch = (e: any) => {
-        props.setSearchTxt(e.target.value);
+        let value = e.target.value;
+        props.setSearchTxt(value);
+        if (value) {
+            const matches = staffNames.filter((name) =>
+                name.toLowerCase().includes(value.toLowerCase())
+            );
+            setSuggestions(matches);
+        } else {
+            setSuggestions([]); // Clear suggestions
+        }
     }
+    const handleSuggestionClick = (name: string) => {
+        props.setSearchTxt(name);
+        setSuggestions([]); // Clear suggestions
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (!target.closest("#searchBox") && !target.closest("#suggestions")) {
+            setSuggestions([]); // Clear suggestions when clicking outside
+        }
+    };
+
+    React.useEffect(() => {
+        // Attach event listener to detect clicks outside the component
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            // Clean up event listener on component unmount
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
 
 
     return (
@@ -35,9 +68,6 @@ export function StaffModal(props: any) {
                                             <input id="searchBox" type="search" role="combobox" className="form-control"
                                                    placeholder="Search by name here ....."
                                                    aria-describedby="button-addon2" value={props.searchTxt} onChange={handelSearch}/>
-                                            {/*<button id="searchBtn" className="btn btn-outline-success"
-                                                    type="button" >Search
-                                            </button>*/}
                                             <Button
                                                 btnOnAction={props.searchBtnOnAction}
                                                 id="searchBtn"
@@ -47,7 +77,18 @@ export function StaffModal(props: any) {
                                             </Button>
 
                                         </div>
-                                        <ul id="suggestions" className="list-group"></ul>
+                                        <ul id="suggestions" className="list-group">
+                                            {suggestions.map((name) => (
+                                                <li
+                                                    key={name}
+                                                    className="list-group-item"
+                                                    style={{ cursor: "pointer" }}
+                                                    onClick={() => handleSuggestionClick(name)}
+                                                >
+                                                    {name}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                                 <form id="survey-form">
