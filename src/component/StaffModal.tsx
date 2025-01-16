@@ -1,10 +1,11 @@
 import {Button} from "./Button.tsx";
 import {InputText} from "./InputText.tsx";
+import {Select} from "./Select.tsx";
 
 export function StaffModal(props: any) {
     return (
         <div className={`modal fade ${props.isVisible ? 'show d-block' : 'hidden'}`} id="staffModel" tabIndex={-1} role="dialog"
-             aria-labelledby="staffModelLabel" aria-hidden={!props.isVisible}>
+             aria-labelledby="staffModelLabel" aria-hidden={true}>
             <div className="modal-dialog modal-xl" role="document">
                 <div className="modal-content ">
                     <div className='modal-header custModalHeader' style={props.headerStyle}>
@@ -124,52 +125,57 @@ export function StaffModal(props: any) {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                            {/*<div className="form-group">
-                                                <label htmlFor="genderDropdown">Gender</label>
-                                                <select id="genderDropdown" name="gender" className="form-control"
-                                                        required>
-                                                    <option value="" disabled selected hidden>Select Gender</option>
-                                                    <option value="MALE">MALE</option>
-                                                    <option value="FEMALE">FEMALE</option>
-                                                </select>
-                                            </div>*/}
+                                            <Select
+                                                id="genderDropdown"
+                                                value={props.gender}
+                                                setItems={props.setGender}
+                                                options={[
+                                                    { value: "MALE", name: "MALE" },
+                                                    { value: "FEMALE", name: "FEMALE" },
+                                                ]}
+                                            >
+                                                Gender
+                                            </Select>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            {/*<div className="form-group">
-                                                <label htmlFor="dropdownDesignation">Designation</label>
-                                                <select id="dropdownDesignation" name="category"
-                                                        className="form-control" required>
-                                                    <option value="" disabled selected hidden>Select Designation
-                                                    </option>
-                                                    <option value="MANAGER">MANAGER</option>
-                                                    <option value="SENIOR_ASSISTANT_MANAGER">SENIOR_ASSISTANT_MANAGER
-                                                    </option>
-                                                    <option value="ASSISTANT_MANAGER">ASSISTANT_MANAGER</option>
-                                                    <option value="ADMIN_AND_HR_STAFF">ADMIN_AND_HR_STAFF</option>
-                                                    <option value="OFFICE_ASSISTANT">OFFICE_ASSISTANT</option>
-                                                    <option value="SENIOR_AGRONOMIST">SENIOR_AGRONOMIST</option>
-                                                    <option value="AGRONOMIST">AGRONOMIST</option>
-                                                    <option value="SOIL_SCIENTIST">SOIL_SCIENTIST</option>
-                                                    <option value="SENIOR_TECHNICIAN">SENIOR_TECHNICIAN</option>
-                                                    <option value="TECHNICIAN">TECHNICIAN</option>
-                                                    <option value="SUPERVISORS">SUPERVISORS</option>
-                                                    <option value="LABORS">LABORS</option>
-                                                </select>
-                                            </div>*/}
+                                            <Select
+                                                id="dropdownDesignation"
+                                                value={props.designation}
+                                                setItems={props.setDesignation}
+                                                options={[
+                                                    { value: "MANAGER", name: "MANAGER" },
+                                                    { value: "SENIOR_ASSISTANT_MANAGER", name: "SENIOR_ASSISTANT_MANAGER" },
+                                                    { value: "ASSISTANT_MANAGER", name: "ASSISTANT_MANAGER" },
+                                                    { value: "ADMIN_AND_HR_STAFF", name: "ADMIN_AND_HR_STAFF" },
+                                                    { value: "OFFICE_ASSISTANT", name: "OFFICE_ASSISTANT" },
+                                                    { value: "SENIOR_AGRONOMIST", name: "SENIOR_AGRONOMIST" },
+                                                    { value: "AGRONOMIST", name: "AGRONOMIST" },
+                                                    { value: "SOIL_SCIENTIST", name: "SOIL_SCIENTIST" },
+                                                    { value: "SENIOR_TECHNICIAN", name: "SENIOR_TECHNICIAN" },
+                                                    { value: "TECHNICIAN", name: "TECHNICIAN" },
+                                                    { value: "SUPERVISORS", name: "SUPERVISORS" },
+                                                    { value: "LABORS", name: "LABORS" },
+                                                ]}
+                                            >
+                                                Designation
+                                            </Select>
                                         </div>
                                         <div className="col-md-6">
-                                            {/*<div className="form-group">
-                                                <label htmlFor="roleDropdown">Role</label>
-                                                <select id="roleDropdown" name="role" className="form-control" required>
-                                                    <option value="" disabled selected hidden>Select Role</option>
-                                                    <option value="MANAGER">MANAGER</option>
-                                                    <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
-                                                    <option value="SCIENTIST">SCIENTIST</option>
-                                                    <option value="OTHER">OTHER</option>
-                                                </select>
-                                            </div>*/}
+                                            <Select
+                                                id="roleDropdown"
+                                                value={props.role}
+                                                setItems={props.setRole}
+                                                options={[
+                                                    { value: "MANAGER", name: "MANAGER" },
+                                                    { value: "ADMINISTRATIVE", name: "ADMINISTRATIVE" },
+                                                    { value: "SCIENTIST", name: "SCIENTIST" },
+                                                    { value: "OTHER", name: "OTHER" },
+                                                ]}
+                                            >
+                                                Role
+                                            </Select>
                                         </div>
                                     </div>
                                 </form>
