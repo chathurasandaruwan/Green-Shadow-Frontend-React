@@ -4,6 +4,12 @@ import {Select} from "./Select.tsx";
 import {InputAddress} from "./InputAddress.tsx";
 
 export function StaffModal(props: any) {
+
+    const handelSearch = (e: any) => {
+        props.setSearchTxt(e.target.value);
+    }
+
+
     return (
         <div className={`modal fade ${props.isVisible ? 'show d-block' : 'hidden'}`} id="staffModel" tabIndex={-1} role="dialog"
              aria-labelledby="staffModelLabel" aria-hidden={true}>
@@ -28,10 +34,18 @@ export function StaffModal(props: any) {
                                         <div className="input-group mb-3">
                                             <input id="searchBox" type="search" role="combobox" className="form-control"
                                                    placeholder="Search by name here ....."
-                                                   aria-describedby="button-addon2"/>
-                                            <button id="searchBtn" className="btn btn-outline-success"
-                                                    type="button">Search
-                                            </button>
+                                                   aria-describedby="button-addon2" value={props.searchTxt} onChange={handelSearch}/>
+                                            {/*<button id="searchBtn" className="btn btn-outline-success"
+                                                    type="button" >Search
+                                            </button>*/}
+                                            <Button
+                                                btnOnAction={props.searchBtnOnAction}
+                                                id="searchBtn"
+                                                style={"btn btn-outline-success"}
+                                            >
+                                                Search
+                                            </Button>
+
                                         </div>
                                         <ul id="suggestions" className="list-group"></ul>
                                     </div>

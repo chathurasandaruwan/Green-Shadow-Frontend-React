@@ -18,6 +18,7 @@ export function Staff() {
     const [gender, setGender] = useState('');
     const [designation, setDesignation] = useState('');
     const [role, setRole] = useState('');
+    const [searchTxt, setSearchTxt] = useState('');
     const [modalConfig, setModalConfig] = useState({
         isVisible: false,
         title: '',
@@ -93,6 +94,9 @@ export function Staff() {
                 break;
         }
     }
+
+
+
     function closeModal() {
         setModalConfig((prev) => ({ ...prev, isVisible: false }));
     }
@@ -121,6 +125,9 @@ export function Staff() {
         setGender("");
         setDesignation("");
         setRole("");
+    }
+    function searchBtnOnAction() {
+        console.log(searchTxt)
     }
     return (
         <>
@@ -208,6 +215,9 @@ export function Staff() {
                 setGender={setGender}
                 setDesignation={setDesignation}
                 setRole={setRole}
+                searchBtnOnAction={searchBtnOnAction}
+                setSearchTxt={setSearchTxt}
+                searchTxt={searchTxt}
             >
             </StaffModal>
         </>
