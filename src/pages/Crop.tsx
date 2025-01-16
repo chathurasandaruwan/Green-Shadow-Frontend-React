@@ -7,6 +7,9 @@ import {InputText} from "../component/InputText.tsx";
 import {Select} from "../component/Select.tsx";
 import {InputImage} from "../component/InputImage.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
+import {Crop as CropModel} from "../models/Crop.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {saveCrop} from "../slices/CropSlice.ts";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -16,8 +19,15 @@ export function Crop() {
     const [fieldName, setFieldName] = useState("");
     const [selectedSeason, setSelectedSeason] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
+
+    const content:CropModel[] = useSelector(state => state.cropsData);
+    const dispatch = useDispatch();
     function AddCrop() {
-        console.log(commonName, scientificName, category, fieldName, selectedSeason, previewSrc);
+        // console.log(commonName, scientificName, category, fieldName, selectedSeason, previewSrc);
+        dispatch(saveCrop(new CropModel(commonName, scientificName, category, fieldName, selectedSeason, previewSrc)));
+        content.map((crop)=>{
+            console.log(crop.commonName);
+        })
         clearForm();
     }
     const clearForm = () => {

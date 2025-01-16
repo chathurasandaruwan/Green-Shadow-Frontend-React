@@ -8,12 +8,12 @@ const CropSlice = createSlice({
     name: "crop",
     initialState: initialState,
     reducers: {
-        AddCrop:(state,action)=>{
+        saveCrop:(state,action)=>{
             state.push(action.payload)
         },
     }
 })
 
-export const {AddCrop}=CropSlice.actions
+export const {saveCrop}=CropSlice.actions
 
 export default CropSlice.reducer
