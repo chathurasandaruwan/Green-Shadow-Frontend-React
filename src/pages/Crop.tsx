@@ -9,7 +9,7 @@ import {InputImage} from "../component/InputImage.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
 import {Crop as CropModel} from "../models/Crop.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {saveCrop} from "../slices/CropSlice.ts";
+import {saveCrop, updateCrop} from "../slices/CropSlice.ts";
 import {Table} from "../component/Table.tsx";
 
 export function Crop() {
@@ -20,11 +20,17 @@ export function Crop() {
     const [fieldName, setFieldName] = useState("");
     const [selectedSeason, setSelectedSeason] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
+    const [saveBtnText, setSaveBtnText]= useState("");
+    // setSaveBtnText("Save")
 
     const crops:CropModel[] = useSelector(state => state.cropsData);
     const dispatch = useDispatch();
     function AddCrop() {
-        dispatch(saveCrop(new CropModel(commonName, scientificName, category, fieldName, selectedSeason, previewSrc)));
+        if (saveBtnText=="Update"){
+            dispatch(updateCrop(new CropModel(commonName, scientificName, category, fieldName, selectedSeason, previewSrc)));
+        }else {
+            dispatch(saveCrop(new CropModel(commonName, scientificName, category, fieldName, selectedSeason, previewSrc)));
+        }
         clearForm();
     }
     const clearForm = () => {
@@ -34,6 +40,7 @@ export function Crop() {
         setFieldName("");
         setSelectedSeason("");
         setPreviewSrc("");
+        setSaveBtnText("Save")
         if (fileInputRef.current) {
             fileInputRef.current.value = "";
         }
@@ -41,8 +48,16 @@ export function Crop() {
 
     const loadSelectedCrop = ( crop:CropModel) => {
         console.log("Row data", crop);
+        setSaveBtnText("Update")
+        setCommonName(crop.commonName);
+        setScientificName(crop.scientificName);
+        setCategory(crop.category);
+        setFieldName(crop.fieldName);
+        setSelectedSeason(crop.season);
+        setPreviewSrc(crop.image);
     };
-    const deleteOnAction = ( index:number) => {
+    const deleteOnAction = ( e:any,index:number) => {
+        e.stopPropagation();
         console.log("clicked index", index);
     };
     return (
@@ -166,7 +181,7 @@ export function Crop() {
                                         id="saveBtn"
                                         style={"btn-primary btn btn-block"}
                                     >
-                                        Save
+                                        {saveBtnText || "Save"}
                                     </Button>
                                     <Button
                                         btnOnAction={clearForm}
@@ -211,7 +226,7 @@ export function Crop() {
                                     <td>{crop.fieldName}</td>
                                     <td>{crop.season}</td>
                                     <td>
-                                        <button className="btn deleteBtn" onClick={()=>deleteOnAction(index)}>
+                                        <button className="btn deleteBtn" onClick={(e)=>deleteOnAction(e,index)}>
                                             Delete <i className="far fa-trash-alt"></i>
                                         </button>
                                     </td>
