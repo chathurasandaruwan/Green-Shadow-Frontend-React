@@ -9,7 +9,7 @@ import {InputImage} from "../component/InputImage.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
 import {Crop as CropModel} from "../models/Crop.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {saveCrop, updateCrop} from "../slices/CropSlice.ts";
+import {deleteCrop, saveCrop, updateCrop} from "../slices/CropSlice.ts";
 import {Table} from "../component/Table.tsx";
 
 export function Crop() {
@@ -58,7 +58,7 @@ export function Crop() {
     };
     const deleteOnAction = ( e:any,index:number) => {
         e.stopPropagation();
-        console.log("clicked index", index);
+        dispatch(deleteCrop(index))
     };
     return (
         <>

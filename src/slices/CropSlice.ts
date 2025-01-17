@@ -20,12 +20,15 @@ const CropSlice = createSlice({
             }
         },
         deleteCrop:(state, action )=>{
-
+            const index = action.payload
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
         },
 
     }
 })
 
-export const {saveCrop,updateCrop}=CropSlice.actions
+export const {saveCrop,updateCrop,deleteCrop}=CropSlice.actions
 
 export default CropSlice.reducer
