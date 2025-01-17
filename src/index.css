@@ -351,12 +351,74 @@ h1{
     box-shadow: 0px 0px 20px rgba(0, 0, 0, .1)!important;
 }
 .btn-danger:hover {
-    color: #dc3545;
-    background-color: #ffffff;
-    border-color: #dc3545;
-    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, .1);
-    -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, .1);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, .1);
+    color: #dc3545 !important;
+    background-color: #ffffff !important;
+    border-color: #dc3545 !important;
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, .1) !important;
+    -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, .1) !important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .1) !important;
+}
+/*table css*/
+.container {
+    padding: 1rem 0rem;
+}
+
+h4 {
+    margin: 2rem 0rem 1rem !important;
+}
+
+.table-image ,
+td, th {
+    vertical-align: middle !important;
+}
+.deleteBtn{
+    width: max-content!important ;
+    color: red !important;
+    cursor: pointer !important;
+    display: none !important;
+}
+tr:hover .deleteBtn{
+    display: inline-block !important;
+}
+.custom-iziToast {
+    width: 400px !important;
+    height: 100px !important;
+    letter-spacing: 1px !important;
+}
+.custom-iziToast-btn {
+    width: 400px !important;
+    height: 100px !important;
+    letter-spacing: 1px !important;
+    background-color: #f1f97d !important;
+}
+
+@media (max-width: 768px) {
+    /*header*/
+    #saveCrop {
+        margin-top: 10px;
+    }
+    .header {
+        padding: 60px;
+    }
+    h1 {
+        font-size: 35px;
+    }
+    #description {
+        font-size: 13px;
+    }
+    /*table */
+    .table {
+        min-width: 850px;
+    }
+    #cropTable{
+        overflow-X: scroll;
+    }
+    .form-control-file {
+        width: 100%;
+    }
+    .w-25 {
+        width: 15% !important;
+    }
 }
 /*---------------------------equipment css---------------------------------------*/
 #equipmentTblCard{
