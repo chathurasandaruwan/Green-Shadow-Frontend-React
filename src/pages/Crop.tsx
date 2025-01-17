@@ -21,7 +21,7 @@ export function Crop() {
     const [selectedSeason, setSelectedSeason] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
     const [saveBtnText, setSaveBtnText]= useState("");
-    // setSaveBtnText("Save")
+    const [saveBtnStyle, setSaveBtnStyle]= useState("");
 
     const crops:CropModel[] = useSelector(state => state.cropsData);
     const dispatch = useDispatch();
@@ -41,14 +41,15 @@ export function Crop() {
         setSelectedSeason("");
         setPreviewSrc("");
         setSaveBtnText("Save")
+        setSaveBtnStyle("btn-primary btn btn-block")
         if (fileInputRef.current) {
             fileInputRef.current.value = "";
         }
     };
 
     const loadSelectedCrop = ( crop:CropModel) => {
-        console.log("Row data", crop);
         setSaveBtnText("Update")
+        setSaveBtnStyle("btn-warning btn btn-block")
         setCommonName(crop.commonName);
         setScientificName(crop.scientificName);
         setCategory(crop.category);
@@ -179,7 +180,7 @@ export function Crop() {
                                     <Button
                                         btnOnAction={() => AddCrop()}
                                         id="saveBtn"
-                                        style={"btn-primary btn btn-block"}
+                                        style={saveBtnStyle || "btn-primary btn btn-block"}
                                     >
                                         {saveBtnText || "Save"}
                                     </Button>
