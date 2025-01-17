@@ -24,7 +24,6 @@ export function Crop() {
     const crops:CropModel[] = useSelector(state => state.cropsData);
     const dispatch = useDispatch();
     function AddCrop() {
-        // console.log(commonName, scientificName, category, fieldName, selectedSeason, previewSrc);
         dispatch(saveCrop(new CropModel(commonName, scientificName, category, fieldName, selectedSeason, previewSrc)));
         clearForm();
     }
@@ -38,6 +37,13 @@ export function Crop() {
         if (fileInputRef.current) {
             fileInputRef.current.value = "";
         }
+    };
+
+    const loadSelectedCrop = ( crop:CropModel) => {
+        console.log("Row data", crop);
+    };
+    const deleteOnAction = ( index:number) => {
+        console.log("clicked index", index);
     };
     return (
         <>
@@ -177,38 +183,6 @@ export function Crop() {
             </section>
             <section id="cropTable">
                 <div className="container">
-                    {/*<div className="row">
-                        <div className="col-12">
-                            <table id="cropTbl" className="table table-image">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Common Name</th>
-                                    <th scope="col">Scientific Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Field Name</th>
-                                    <th scope="col">Season</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td className="w-25">
-                                        <img
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg"
-                                            className="img-fluid img-thumbnail" alt="Sheep"/>
-                                    </td>
-                                    <td>coconut</td>
-                                    <td>Cocos nucifera</td>
-                                    <td>Cow-pea</td>
-                                    <td>field2</td>
-                                    <td>Other</td>
-                                    <td><a href="#" className=" btn deleteBtn ">Delete <i
-                                        className="far fa-trash-alt"></i></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>*/}
                     <Table
                         firstDivClass='row'
                         secondDivClass='col-12'
@@ -221,10 +195,9 @@ export function Crop() {
                         "Category",
                         "Field Name",
                         "Season",
-                        "Actions",
                         ]}
                         tbody={crops.map((crop, index) => (
-                                <tr key={index}>
+                                <tr key={index} onClick={()=>loadSelectedCrop(crop)}>
                                     <td className="w-25">
                                         <img
                                             src={crop.image}
@@ -238,7 +211,7 @@ export function Crop() {
                                     <td>{crop.fieldName}</td>
                                     <td>{crop.season}</td>
                                     <td>
-                                        <button className="btn deleteBtn">
+                                        <button className="btn deleteBtn" onClick={()=>deleteOnAction(index)}>
                                             Delete <i className="far fa-trash-alt"></i>
                                         </button>
                                     </td>
