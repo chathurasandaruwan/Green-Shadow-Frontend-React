@@ -7,7 +7,7 @@ import {InputRadio} from "../component/InputRadio.tsx";
 import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {Vehicle as VehicleModel} from "../models/Vehicle.ts";
-import {saveVehicle} from "../slices/VehicleSlice.ts";
+import {deleteVehicles, saveVehicle} from "../slices/VehicleSlice.ts";
 import {deleteCrop} from "../slices/CropSlice.ts";
 
 export function Vehicle() {
@@ -45,7 +45,7 @@ export function Vehicle() {
     }
     const deleteOnAction = ( e:any,index:number) => {
         e.stopPropagation();
-        dispatch(deleteCrop(index))
+        dispatch(deleteVehicles(index))
     };
     const loadSelectedVehicle = ( vehicle:VehicleModel) => {
         setLicensePlateNum(vehicle.licensePlateNum);
