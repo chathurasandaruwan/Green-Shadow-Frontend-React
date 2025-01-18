@@ -5,6 +5,9 @@ import {Button} from "../component/Button.tsx";
 import {Select} from "../component/Select.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
 import {Table} from "../component/Table.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {Vehicle as VehicleModel} from "../models/Vehicle.ts";
+import {saveVehicle} from "../slices/VehicleSlice.ts";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -17,8 +20,11 @@ export function Vehicle() {
     const [staffContactNo, setStaffContactNo] = useState("");
     const [staffDesignation, setStaffDesignation] = useState("");
 
+    const vehicles:VehicleModel[] = useSelector(state => state.vehicleData);
+    const dispatch = useDispatch();
+
     function AddVehicle() {
-        console.log(licensePlateNum, remarks, category, fuelTypedName, selectedStatus, staffName, staffLastName, staffContactNo, staffDesignation);
+        dispatch(saveVehicle(new VehicleModel(licensePlateNum, remarks, category, fuelTypedName, selectedStatus, staffName)));
         clearForm();
     }
     const clearForm = () => {
