@@ -8,6 +8,7 @@ import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {Vehicle as VehicleModel} from "../models/Vehicle.ts";
 import {saveVehicle} from "../slices/VehicleSlice.ts";
+import {deleteCrop} from "../slices/CropSlice.ts";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -38,6 +39,10 @@ export function Vehicle() {
         setStaffContactNo("");
         setStaffDesignation("");
     }
+    const deleteOnAction = ( e:any,index:number) => {
+        e.stopPropagation();
+        dispatch(deleteCrop(index))
+    };
     return (
         <>
             <section id="saveVehicle">
@@ -216,6 +221,22 @@ export function Vehicle() {
                             "status",
                             "Staff name",
                         ]}
+                        tbody={vehicles.map((vehicle, index) => (
+                            <tr key={index}>
+                                <td>{vehicle.licensePlateNum}</td>
+                                <td>{vehicle.remarks}</td>
+                                <td>{vehicle.category}</td>
+                                <td>{vehicle.fuelTypedName}</td>
+                                <td>{vehicle.status}</td>
+                                <td>{vehicle.staffName}</td>
+                                <td>
+                                    <button className=" btn tblBtn btn-danger deleteBtnTbl" onClick={(e) => deleteOnAction(e, index)}>Delete <i
+                                        className="far fa-trash-alt"></i></button>
+                                    <button className=" btn  tblBtn btn-warning editBtn" onClick={() => loadSelectedStaff(vehicle)}>Edit<i
+                                        className="fas fa-pencil-alt"></i></button>
+                                </td>
+                            </tr>
+                        ))}
                     />
                 </div>
             </section>
