@@ -4,6 +4,7 @@ import {Header} from "../component/Header.tsx";
 import {Button} from "../component/Button.tsx";
 import {Select} from "../component/Select.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
+import {Table} from "../component/Table.tsx";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -192,6 +193,24 @@ export function Vehicle() {
 
                         </form>
                     </div>
+                </div>
+            </section>
+            <section id="vehicleTblCard">
+                <div className="container">
+                    <Table
+                        firstDivClass='row'
+                        secondDivClass='col-12'
+                        id='vehicleTbl'
+                        tableClass="table"
+                        headers = {[
+                            "License Plate Number",
+                            "Remarks",
+                            "Category",
+                            "Fuel type",
+                            "status",
+                            "Staff name",
+                        ]}
+                    />
                 </div>
             </section>
         </>
