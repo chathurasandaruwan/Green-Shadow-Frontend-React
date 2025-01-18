@@ -3,6 +3,9 @@ import {StaffBtnCard} from "../component/StaffBtnCard.tsx";
 import {useState} from "react";
 import {StaffModal} from "../component/StaffModal.tsx";
 import {Table} from "../component/Table.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {saveStaff} from "../slices/StaffSlice.ts";
+import {Staff as StaffModel} from "../models/Staff.ts";
 
 export function Staff() {
     const [firstName, setFirstName] = useState('');
@@ -32,6 +35,8 @@ export function Staff() {
         SearchCardStyle: {},
         SearchCardHeaderStyle: {},
     });
+    const staffs:StaffModel[] = useSelector(state => state.staffData);
+    const dispatch = useDispatch();
 
     function openModel(type: string) {
         switch (type) {
@@ -103,8 +108,7 @@ export function Staff() {
     }
     function saveAction() {
         if (modalConfig.saveButtonText === 'Save') {
-            alert('Save');
-            console.log(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role);
+            dispatch(saveStaff(new StaffModel(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role)))
         } else if (modalConfig.saveButtonText === 'Update') {
             alert('Update');
         } else {
@@ -219,6 +223,7 @@ export function Staff() {
                 searchBtnOnAction={searchBtnOnAction}
                 setSearchTxt={setSearchTxt}
                 searchTxt={searchTxt}
+                staffNames={staffs.map((staff) => staff.firstName)}
             >
             </StaffModal>
             <section id="staffTblCard">
@@ -240,6 +245,28 @@ export function Staff() {
                             "Contact No",
                             "Role",
                         ]}
+                        tbody={staffs.map((staff) => (
+                            <tr key={staff.firstName}>
+                                <td>{staff.firstName}</td>
+                                <td>{staff.lastName}</td>
+                                <td>{staff.email}</td>
+                                <td>{staff.designation}</td>
+                                <td>{staff.gender}</td>
+                                <td>{staff.dateOfJoining}</td>
+                                <td>{staff.DOB}</td>
+                                <td>
+                                    <ul>
+                                        <li>{staff.address1}</li>
+                                        <li>{staff.address2}</li>
+                                        <li>{staff.address3}</li>
+                                        <li>{staff.address4}</li>
+                                        <li>{staff.address5}</li>
+                                    </ul>
+                                </td>
+                                <td>{staff.contactNo}</td>
+                                <td>{staff.role}</td>
+                            </tr>
+                        ))}
                     />
                 </div>
             </section>
