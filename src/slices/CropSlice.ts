@@ -16,7 +16,6 @@ const CropSlice = createSlice({
             const index = state.findIndex((crop) => crop.commonName === updateCrops.commonName);
             if (index !== -1) {
                 state[index] = { ...state[index], ...updateCrops };
-                console.log(state)
             }
         },
         deleteCrop:(state, action )=>{
