@@ -4,7 +4,7 @@ import {useState} from "react";
 import {StaffModal} from "../component/StaffModal.tsx";
 import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {saveStaff, updateStaff} from "../slices/StaffSlice.ts";
+import {deleteStaff, saveStaff, updateStaff} from "../slices/StaffSlice.ts";
 import {Staff as StaffModel} from "../models/Staff.ts";
 
 export function Staff() {
@@ -115,7 +115,8 @@ export function Staff() {
             dispatch(updateStaff(new StaffModel(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role)));
             clearAction();
         } else {
-            alert('Delete');
+            dispatch(deleteStaff(email));
+            clearAction();
         }
     }
     function clearAction() {

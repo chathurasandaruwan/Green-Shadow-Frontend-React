@@ -27,10 +27,16 @@ const StaffSlice = createSlice({
                 state[index] = { ...state[index], ...updateStaff };
             }
         },
+        deleteStaff:(state, action )=>{
+            const index = state.findIndex((staff) => staff.email === action.payload);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+        },
 
     }
 })
 
-export const {saveStaff,updateStaff}=StaffSlice.actions
+export const {saveStaff,updateStaff,deleteStaff}=StaffSlice.actions
 
 export default StaffSlice.reducer
