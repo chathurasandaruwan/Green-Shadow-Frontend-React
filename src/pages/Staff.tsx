@@ -105,10 +105,12 @@ export function Staff() {
 
     function closeModal() {
         setModalConfig((prev) => ({ ...prev, isVisible: false }));
+        clearAction();
     }
     function saveAction() {
         if (modalConfig.saveButtonText === 'Save') {
-            dispatch(saveStaff(new StaffModel(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role)))
+            dispatch(saveStaff(new StaffModel(firstName, lastName, email, contactNo, DOB, dateOfJoining, address1, address2, address3, address4, address5, gender, designation, role)));
+            clearAction();
         } else if (modalConfig.saveButtonText === 'Update') {
             alert('Update');
         } else {
@@ -130,9 +132,33 @@ export function Staff() {
         setGender("");
         setDesignation("");
         setRole("");
+        setSearchTxt("");
     }
     function searchBtnOnAction() {
         console.log(searchTxt)
+        /*let staff:StaffModel[]=[];
+        staff=dispatch(searchStaff(searchTxt));
+        staff.map((staff)=>{
+            console.log(staff.firstName)
+        })*/
+        staffs.map((staff)=>{
+            if (staff.firstName===searchTxt){
+                setFirstName(staff.firstName);
+                setLastName(staff.lastName);
+                setEmail(staff.email);
+                setContactNo(staff.contactNo);
+                setDOB(staff.DOB);
+                setDateOfJoining(staff.dateOfJoining);
+                setAddress1(staff.address1);
+                setAddress2(staff.address2);
+                setAddress3(staff.address3);
+                setAddress4(staff.address4);
+                setAddress5(staff.address5);
+                setGender(staff.gender);
+                setDesignation(staff.designation);
+                setRole(staff.role);
+            }
+        })
     }
     return (
         <>

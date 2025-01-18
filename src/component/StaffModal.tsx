@@ -6,8 +6,7 @@ import React, {useState} from "react";
 
 export function StaffModal(props: any) {
     const [suggestions, setSuggestions] = useState<string[]>([]);
-    const staffNames = ["Alice Johnson", "Bob Smith", "Charlie Brown", "Diana Prince", "Eve Adams"];
-
+    const staffNames:string[] = props.staffNames;
     const handelSearch = (e: any) => {
         let value = e.target.value;
         props.setSearchTxt(value);

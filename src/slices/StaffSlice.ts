@@ -11,6 +11,15 @@ const StaffSlice = createSlice({
         saveStaff:(state,action)=>{
             state.push(action.payload)
         },
+        /*searchStaff:(state,action)=>{
+            let staffArray:Staff[] = [];
+            state.map((staff)=>{
+                if(staff.firstName===action.payload){
+                    staffArray.push(staff)
+                }
+            })
+            return staffArray;
+        },*/
 
     }
 })
