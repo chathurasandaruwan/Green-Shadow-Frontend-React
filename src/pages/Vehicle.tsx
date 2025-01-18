@@ -20,6 +20,8 @@ export function Vehicle() {
     const [staffLastName, setStaffLastName] = useState("");
     const [staffContactNo, setStaffContactNo] = useState("");
     const [staffDesignation, setStaffDesignation] = useState("");
+    const [saveBtnText, setSaveBtnText]= useState("");
+    const [saveBtnStyle, setSaveBtnStyle]= useState("");
 
     const vehicles:VehicleModel[] = useSelector(state => state.vehicleData);
     const dispatch = useDispatch();
@@ -29,6 +31,8 @@ export function Vehicle() {
         clearForm();
     }
     const clearForm = () => {
+        setSaveBtnText("Save");
+        setSaveBtnStyle("btn-primary btn btn-block");
         setLicensePlateNum("");
         setRemarksTxt("");
         setCategory("");
@@ -43,6 +47,16 @@ export function Vehicle() {
         e.stopPropagation();
         dispatch(deleteCrop(index))
     };
+    const loadSelectedVehicle = ( vehicle:VehicleModel) => {
+        setLicensePlateNum(vehicle.licensePlateNum);
+        setRemarksTxt(vehicle.remarks);
+        setCategory(vehicle.category);
+        setFuelTypedName(vehicle.fuelTypedName);
+        setSelectedStatus(vehicle.status);
+        setStaffName(vehicle.staffName);
+        setSaveBtnText("Update");
+        setSaveBtnStyle("btn-warning btn btn-block");
+    }
     return (
         <>
             <section id="saveVehicle">
@@ -191,9 +205,9 @@ export function Vehicle() {
                                 <div className="col-md-4">
                                     <Button
                                         id="btnSave"
-                                        style="btn btn-primary btn-block"
+                                        style={saveBtnStyle || "btn-primary btn btn-block"}
                                         btnOnAction={AddVehicle}
-                                    >Save</Button>
+                                    >{saveBtnText || "Save"}</Button>
                                     <Button
                                         id="btnClear"
                                         style="btn btn-secondary btn-block"
@@ -232,7 +246,7 @@ export function Vehicle() {
                                 <td>
                                     <button className=" btn tblBtn btn-danger deleteBtnTbl" onClick={(e) => deleteOnAction(e, index)}>Delete <i
                                         className="far fa-trash-alt"></i></button>
-                                    <button className=" btn  tblBtn btn-warning editBtn" onClick={() => loadSelectedStaff(vehicle)}>Edit<i
+                                    <button className=" btn  tblBtn btn-warning editBtn" onClick={() => loadSelectedVehicle(vehicle)}>Edit<i
                                         className="fas fa-pencil-alt"></i></button>
                                 </td>
                             </tr>
