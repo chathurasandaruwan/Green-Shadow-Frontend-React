@@ -2,6 +2,7 @@ import {Header} from "../component/Header.tsx";
 import {StaffBtnCard} from "../component/StaffBtnCard.tsx";
 import {useState} from "react";
 import {StaffModal} from "../component/StaffModal.tsx";
+import {Table} from "../component/Table.tsx";
 
 export function Staff() {
     const [firstName, setFirstName] = useState('');
@@ -220,6 +221,28 @@ export function Staff() {
                 searchTxt={searchTxt}
             >
             </StaffModal>
+            <section id="staffTblCard">
+                <div className="container">
+                    <Table
+                        firstDivClass='row'
+                        secondDivClass='col-12'
+                        id='staffTbl'
+                        tableClass="table"
+                        headers = {[
+                            "First Name",
+                            "Last Name",
+                            "Email",
+                            "Designation",
+                            "Gender",
+                            "Joined date",
+                            "DOB",
+                            "Address",
+                            "Contact No",
+                            "Role",
+                        ]}
+                    />
+                </div>
+            </section>
         </>
     );
 }
