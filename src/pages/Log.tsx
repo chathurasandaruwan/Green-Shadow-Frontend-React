@@ -4,6 +4,7 @@ import {useRef, useState} from "react";
 import {InputImage} from "../component/InputImage.tsx";
 import {LButton} from "../component/LButton.tsx";
 import {OneColTable} from "../component/OneColTable.tsx";
+import {Button} from "../component/Button.tsx";
 
 export function Log() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -11,6 +12,17 @@ export function Log() {
     const [Date, setDate] = useState("");
     const [details, setDetails] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
+
+
+    const clearForm = () => {
+        setLogId("001");
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    };
+    function AddLog() {
+
+    }
 
     return (
         <>
@@ -100,10 +112,20 @@ export function Log() {
 
                             <div className="row">
                                 <div className="col-md-4">
-                                    <button type="button" id="btnSave" className="btn btn-primary btn-block">Save
-                                    </button>
-                                    <button type="button" id="btnClear" className="btn btn-secondary btn-block">Clear
-                                    </button>
+                                    <Button
+                                        btnOnAction={() => AddLog()}
+                                        id="btnSave"
+                                        style="btn-primary btn btn-block"
+                                    >
+                                        save
+                                    </Button>
+                                    <Button
+                                        btnOnAction={clearForm}
+                                        id="btnClear"
+                                        style={"btn btn-secondary btn-block"}
+                                    >
+                                        Clear
+                                    </Button>
                                 </div>
                             </div>
 
