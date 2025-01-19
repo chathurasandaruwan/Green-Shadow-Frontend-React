@@ -3,6 +3,7 @@ import {InputText} from "../component/InputText.tsx";
 import {useRef, useState} from "react";
 import {InputImage} from "../component/InputImage.tsx";
 import {LButton} from "../component/LButton.tsx";
+import {OneColTable} from "../component/OneColTable.tsx";
 
 export function Log() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -67,13 +68,6 @@ export function Log() {
                                 >
                                     Select Staffs
                                 </LButton>
-                                {/*<div className="col-md-4 ">
-                                    <button type="button" id="selectFieldBtn" className="selectBtnSet btn"
-                                            data-bs-toggle="modal" data-bs-target="#fieldModal">
-                                        <i className="far fa-clone"></i> Select Fields
-                                    </button>
-
-                                </div>*/}
                                 <LButton
                                     id="selectFieldBtn"
                                     icon="far fa-clone"
@@ -81,12 +75,6 @@ export function Log() {
                                 >
                                     Select Field
                                 </LButton>
-                                {/*<div className="col-md-4 ">
-                                    <button type="button" id="selectCropBtn" className="selectBtnSet btn"
-                                            data-bs-toggle="modal" data-bs-target="#cropModal">
-                                        <i className="fa fa-crop" aria-hidden="true"></i> Select Crops
-                                    </button>
-                                </div>*/}
                                 <LButton
                                     id="selectCropBtn"
                                     icon="fa fa-crop"
@@ -96,39 +84,18 @@ export function Log() {
                                 </LButton>
                             </div>
                             <div className="row mb-4">
-                                <div className="col-md-4 ">
-                                    <table id="staffListTbl" className=" text-center">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Staffs</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="staffTbl-body">
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="col-md-4 ">
-                                    <table id="fieldListTbl" className=" text-center ">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Fields</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="fieldTbl-body">
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="col-md-4 ">
-                                    <table id="cropListTbl" className=" text-center">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Crops</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="cropListTbl-body">
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <OneColTable
+                                    id="staffListTbl"
+                                >Staffs
+                                </OneColTable>
+                                <OneColTable
+                                    id="fieldListTbl"
+                                >Fields
+                                </OneColTable>
+                                <OneColTable
+                                    id="cropListTbl"
+                                >Crops
+                                </OneColTable>
                             </div>
 
                             <div className="row">
