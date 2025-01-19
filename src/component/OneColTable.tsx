@@ -8,6 +8,7 @@ export function OneColTable(props:any) {
                 </tr>
                 </thead>
                 <tbody>
+                    {props.tbody}
                 </tbody>
             </table>
         </div>

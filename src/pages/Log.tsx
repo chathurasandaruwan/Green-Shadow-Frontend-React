@@ -6,6 +6,7 @@ import {LButton} from "../component/LButton.tsx";
 import {OneColTable} from "../component/OneColTable.tsx";
 import {Button} from "../component/Button.tsx";
 import {ModalHeader} from "../component/ModalHeader.tsx";
+import {Select} from "../component/Select.tsx";
 
 export function Log() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -13,13 +14,29 @@ export function Log() {
     const [Date, setDate] = useState("");
     const [details, setDetails] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
-    const [selectedStaff, setSelectedStaff]= useState([]);
+    const [lastName, setLastName]= useState("");
+    const [email, setEmail]= useState("");
+    const [contactNo, setContactNo]= useState("");
+    const [dateOfBirth, setDateOfBirth]= useState("");
+    const [dateOfJoining, setDateOfJoining]= useState("");
+    const [address, setAddress]= useState("");
+    const [gender, setGender]= useState("");
+    const [designation, setDesignation]= useState("");
+    const [role, setRole]= useState("");
+    const [staffName, setStaffName]= useState("");
+    const [staffModelIsVisible, setStaffModelIsVisible]= useState(false);
+    const [selectedStaff, setSelectedStaff]= useState<string[]>([]);
     const [selectedCrop, setSelectedCrop]= useState([]);
     const [selectedField, setSelectedField]= useState([]);
 
 
+
     const clearForm = () => {
         setLogId("001");
+        setDate("");
+        setDetails("");
+        setPreviewSrc("");
+        setSelectedStaff([]);
         if (fileInputRef.current) {
             fileInputRef.current.value = "";
         }
@@ -28,7 +45,10 @@ export function Log() {
 
     }
     function closeStaffModal() {
-
+        setStaffModelIsVisible(false);
+    }
+    function setSelectedStaffList() {
+        setSelectedStaff([...selectedStaff,staffName]);
     }
 
     return (
@@ -43,7 +63,7 @@ export function Log() {
                                     <InputText
                                         type="text"
                                         id="logIdTxt"
-                                        item={logId}
+                                        item={logId || "001"}
                                         disable={true}
                                     >
                                         Log Id
@@ -83,9 +103,7 @@ export function Log() {
                                 <LButton
                                     id="selectStaffBtn"
                                     icon="fa fa-users"
-                                    btnAction={() => {
-                                        alert("select staff model")
-                                    }}
+                                    btnAction={()=>setStaffModelIsVisible(true)}
                                 >
                                     Select Staffs
                                 </LButton>
@@ -111,6 +129,7 @@ export function Log() {
                             <div className="row mb-4">
                                 <OneColTable
                                     id="staffListTbl"
+                                    tbody={selectedStaff.map((staff, index) => <tr key={index}>{staff}</tr>)}
                                 >Staffs
                                 </OneColTable>
                                 <OneColTable
@@ -146,7 +165,7 @@ export function Log() {
                     </div>
                 </div>
             </section>
-            <div className="modal fade " id="staffModal" tabIndex={-1} role="dialog" aria-labelledby="staffModelLabel"
+            <div className={`modal fade ${staffModelIsVisible ? 'show d-block' : 'hidden'}`} id="staffModal" tabIndex={-1} role="dialog" aria-labelledby="staffModelLabel"
                  aria-hidden="true">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content ">
@@ -160,86 +179,117 @@ export function Log() {
                                     <form id="staff-select-form">
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="dropdownStaffName">Staff Name</label>
-                                                    <select id="dropdownStaffName" name="staffName"
-                                                            className="form-control" required>
-                                                    </select>
-                                                </div>
+                                                <Select
+                                                    id="dropdownStaffName"
+                                                    value={staffName}
+                                                    setItems={setStaffName}
+                                                    options={[
+                                                        {value: "Kamal", name: "Kamal"},
+                                                        {value: "Nimal", name: "Nimal"},
+                                                        {value: "Namal", name: "Namal"},
+                                                        {value: "Bimal", name: "Bimal"},
+                                                    ]}
+                                                >
+                                                    Staff Name
+                                                </Select>
                                             </div>
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label id="lastN-label" htmlFor="lastNameDum">Last Name</label>
-                                                    <input type="text" name="lastName" id="lastNameDum"
-                                                           placeholder="Enter Last Name" className="form-control"
-                                                           disabled/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="emailDum">Email</label>
-                                                    <input type="text" name="email" id="emailDum"
-                                                           placeholder="Enter Email" className="form-control" disabled/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label id="contactNo-label" htmlFor="contactNoDum">Contact
-                                                        No</label>
-                                                    <input type="tel" name="contactNo" id="contactNoDum"
-                                                           placeholder="Enter Contact No" className="form-control"
-                                                           disabled/>
-                                                </div>
+                                                <InputText
+                                                    type="text"
+                                                    id="lastNameDum"
+                                                    item={lastName}
+                                                    disable={true}
+                                                >
+                                                    LastName
+                                                </InputText>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="dateOfBirthDum">Date of Birth</label>
-                                                    <input type="date" id="dateOfBirthDum" className="form-control"
-                                                           disabled/>
-                                                </div>
+                                                <InputText
+                                                    type="text"
+                                                    id="emailDum"
+                                                    item={email}
+                                                    disable={true}
+                                                >
+                                                    Email
+                                                </InputText>
                                             </div>
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="dateOfJoiningDum">Date of Joining</label>
-                                                    <input type="date" id="dateOfJoiningDum" className="form-control"
-                                                           disabled/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group ">
-                                                    <label htmlFor="ADDDum">Address</label>
-                                                    <input type="text" className="form-control" id="ADDDum"
-                                                           placeholder="No-" disabled/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="genderDum">Gender</label>
-                                                    <input id="genderDum" name="gender" className="form-control"
-                                                           disabled/>
-                                                </div>
+                                                <InputText
+                                                    type="text"
+                                                    id="contactNoDum"
+                                                    item={contactNo}
+                                                    disable={true}
+                                                >
+                                                    Contact No
+                                                </InputText>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="designationDum">Designation</label>
-                                                    <input id="designationDum" name="des" className="form-control"
-                                                           disabled/>
-                                                </div>
+                                                <InputText
+                                                    type="text"
+                                                    id="dateOfBirthDum"
+                                                    item={dateOfBirth}
+                                                    disable={true}
+                                                >
+                                                    Date Of Birth
+                                                </InputText>
                                             </div>
                                             <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="roleInputDum">Role</label>
-                                                    <input id="roleInputDum" name="role" className="form-control"
-                                                           disabled/>
-                                                </div>
+                                                <InputText
+                                                    type="text"
+                                                    id="dateOfJoiningDum"
+                                                    item={dateOfJoining}
+                                                    disable={true}
+                                                >
+                                                    Date Of Joining
+                                                </InputText>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="ADDDum"
+                                                    item={address}
+                                                    disable={true}
+                                                >
+                                                    Address
+                                                </InputText>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="genderDum"
+                                                    item={gender}
+                                                    disable={true}
+                                                >
+                                                    Gender
+                                                </InputText>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="designationDum"
+                                                    item={designation}
+                                                    disable={true}
+                                                >
+                                                    Designation
+                                                </InputText>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="roleInputDum"
+                                                    item={role}
+                                                    disable={true}
+                                                >
+                                                    Role
+                                                </InputText>
                                             </div>
                                         </div>
                                     </form>
@@ -247,10 +297,20 @@ export function Log() {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" id="btnStaffAdd" className="btn btn-primary btn-block">Add</button>
-                            <button type="button" id="btnStaffClose" className="btn btn-danger"
-                                    data-bs-dismiss="modal">Close
-                            </button>
+                            <Button
+                                btnOnAction={setSelectedStaffList}
+                                id="btnStaffAdd"
+                                style="btn-primary btn btn-block"
+                            >
+                                Add
+                            </Button>
+                            <Button
+                                btnOnAction={closeStaffModal}
+                                id="btnStaffClose"
+                                style={"btn btn-danger"}
+                            >
+                                Close
+                            </Button>
                         </div>
                     </div>
                 </div>
