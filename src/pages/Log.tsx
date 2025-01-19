@@ -11,6 +11,7 @@ import {Log as LogModel} from "../models/Log.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {saveLog} from "../slices/LogSlice.ts";
 import {Table} from "../component/Table.tsx";
+import {Footer} from "../component/Footer.tsx";
 
 export function Log() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -527,6 +528,7 @@ export function Log() {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

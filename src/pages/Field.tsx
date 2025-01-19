@@ -9,6 +9,7 @@ import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {Field as FieldModel} from "../models/Field.ts";
 import {deleteField, saveField, updateField} from "../slices/FieldSlice.ts";
+import {Footer} from "../component/Footer.tsx";
 
 
 export function Field() {
@@ -252,6 +253,7 @@ export function Field() {
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

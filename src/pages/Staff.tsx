@@ -6,6 +6,7 @@ import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteStaff, saveStaff, updateStaff} from "../slices/StaffSlice.ts";
 import {Staff as StaffModel} from "../models/Staff.ts";
+import {Footer} from "../component/Footer.tsx";
 
 export function Staff() {
     const [firstName, setFirstName] = useState('');
@@ -298,6 +299,7 @@ export function Staff() {
                     />
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

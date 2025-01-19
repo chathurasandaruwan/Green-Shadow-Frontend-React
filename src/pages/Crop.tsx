@@ -11,6 +11,7 @@ import {Crop as CropModel} from "../models/Crop.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteCrop, saveCrop, updateCrop} from "../slices/CropSlice.ts";
 import {Table} from "../component/Table.tsx";
+import {Footer} from "../component/Footer.tsx";
 
 export function Crop() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -236,6 +237,7 @@ export function Crop() {
                     ></Table>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

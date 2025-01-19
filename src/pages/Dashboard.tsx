@@ -1,5 +1,6 @@
 import {DashboardCard} from "../component/DashboardCard.tsx";
 import {BarChart} from "../component/BarChat.tsx";
+import {Footer} from "../component/Footer.tsx";
 
 export function Dashboard() {
 
@@ -40,6 +41,7 @@ export function Dashboard() {
                 </div>
             </main>
             <section id="chart" className="container mt-lg-5"><BarChart></BarChart></section>
+            <Footer/>
         </>
     );
 }

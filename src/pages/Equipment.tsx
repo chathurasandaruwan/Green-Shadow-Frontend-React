@@ -8,6 +8,7 @@ import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteEquipment, saveEquipment, updateEquipment} from "../slices/EquipmentSlice.ts";
 import {Equipment as EquipmentModel} from "../models/Equipment.ts";
+import {Footer} from "../component/Footer.tsx";
 
 export function Equipment() {
     const [equipmentName, setEquipmentName] = useState("");
@@ -265,6 +266,7 @@ export function Equipment() {
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

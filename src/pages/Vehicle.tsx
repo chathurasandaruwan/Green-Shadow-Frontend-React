@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Vehicle as VehicleModel} from "../models/Vehicle.ts";
 import {deleteVehicles, saveVehicle} from "../slices/VehicleSlice.ts";
 import {deleteCrop} from "../slices/CropSlice.ts";
+import {Footer} from "../component/Footer.tsx";
 
 export function Vehicle() {
     const [licensePlateNum, setLicensePlateNum] = useState("");
@@ -254,6 +255,7 @@ export function Vehicle() {
                     />
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }
