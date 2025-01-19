@@ -5,6 +5,9 @@ import {InputRadio} from "../component/InputRadio.tsx";
 import {Button} from "../component/Button.tsx";
 import {Header} from "../component/Header.tsx";
 import {Table} from "../component/Table.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteEquipment, saveEquipment, updateEquipment} from "../slices/EquipmentSlice.ts";
+import {Equipment as EquipmentModel} from "../models/Equipment.ts";
 
 export function Equipment() {
     const [equipmentName, setEquipmentName] = useState("");
@@ -17,9 +20,19 @@ export function Equipment() {
     const [extentSize, setExtentSize] = useState("");
     const [designation, setDesignation] = useState("");
     const [preview, setPreview] = useState("");
+    const [saveBtnText, setSaveBtnText]= useState("");
+    const [saveBtnStyle, setSaveBtnStyle]= useState("");
 
-    function AddEquipment() {
-        console.log(equipmentName, type, status, staffName, lastName, contactNo, fieldName, extentSize, designation);
+    const equipments:EquipmentModel[] = useSelector(state => state.EquipmentData);
+    const dispatch = useDispatch();
+    function saveBtnOnAction() {
+        if (saveBtnText === "Update"){
+            dispatch(updateEquipment(new EquipmentModel(equipmentName, type, status, staffName,fieldName)));
+            clearForm();
+        }else {
+            dispatch(saveEquipment(new EquipmentModel(equipmentName, type, status, staffName,fieldName)));
+            clearForm();
+        }
     }
     function clearForm() {
         setEquipmentName("");
@@ -32,17 +45,26 @@ export function Equipment() {
         setExtentSize("");
         setDesignation("");
         setPreview("");
+        setSaveBtnText("Save");
+        setSaveBtnStyle("btn-primary btn btn-block");
+    }
+    const deleteOnAction = ( e:any,index:number) => {
+        e.stopPropagation();
+        dispatch(deleteEquipment(index))
+    };
+    const loadSelectedEquipment = ( equipment:EquipmentModel) => {
+        setEquipmentName(equipment.equipmentName);
+        setType(equipment.type);
+        setStatus(equipment.status);
+        setStaffName(equipment.staffName);
+        setFieldName(equipment.fieldName);
+        setSaveBtnText("Update");
+        setSaveBtnStyle("btn-warning btn btn-block");
     }
 
     return (
         <>
             <section id="equipmentTblCard" className="container">
-                {/*<header className="header animatedBg rounded-4 shadow-lg">
-                    <h1 id="title" className="text-center">Equipment Manage</h1>
-                    <p id="description" className="text-center">
-                        Please use this form to fill out your Equipment details.
-                    </p>
-                </header>*/}
                 <Header>Equipment</Header>
                 <div className=" equipmentTbl">
                     <Table
@@ -54,9 +76,24 @@ export function Equipment() {
                             "Name",
                             "Type",
                             "Status",
-                            "Field name",
                             "Staff name",
+                            "Field name",
                         ]}
+                        tbody={equipments.map((equipment, index) => (
+                            <tr key={index}>
+                                <td>{equipment.equipmentName}</td>
+                                <td>{equipment.type}</td>
+                                <td>{equipment.status}</td>
+                                <td>{equipment.staffName}</td>
+                                <td>{equipment.fieldName}</td>
+                                <td>
+                                    <button className=" btn tblBtn btn-danger deleteBtnTbl" onClick={(e) => deleteOnAction(e, index)}>Delete <i
+                                        className="far fa-trash-alt"></i></button>
+                                    <button className=" btn  tblBtn btn-warning editBtn" onClick={() => loadSelectedEquipment(equipment)}>Edit<i
+                                        className="fas fa-pencil-alt"></i></button>
+                                </td>
+                            </tr>
+                        ))}
                     />
                 </div>
             </section>
@@ -208,11 +245,11 @@ export function Equipment() {
                             <div className="row">
                                 <div className="col-md-4">
                                     <Button
-                                        btnOnAction={AddEquipment}
+                                        btnOnAction={saveBtnOnAction}
                                         id="btnSave"
-                                        style={"btn-primary btn btn-block"}
+                                        style={saveBtnStyle || "btn-primary btn btn-block"}
                                     >
-                                        Save
+                                        {saveBtnText || "Save"}
                                     </Button>
                                     <Button
                                         btnOnAction={clearForm}

@@ -13,7 +13,7 @@ const EquipmentSlice = createSlice({
         },
         updateEquipment:(state, action )=>{
             const updateEquipments = action.payload
-            const index = state.findIndex((equipment) => equipment.equipmentName === updateEquipments.equipment);
+            const index = state.findIndex((equipment) => equipment.equipmentName === updateEquipments.equipmentName);
             if (index !== -1) {
                 state[index] = { ...state[index], ...updateEquipments };
             }
