@@ -8,7 +8,7 @@ import {Button} from "../component/Button.tsx";
 import {Table} from "../component/Table.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {Field as FieldModel} from "../models/Field.ts";
-import {saveField} from "../slices/FieldSlice.ts";
+import {deleteField, saveField, updateField} from "../slices/FieldSlice.ts";
 
 
 export function Field() {
@@ -19,6 +19,9 @@ export function Field() {
     const [previewSrc1, setPreviewSrc1]= useState("");
     const [previewSrc2, setPreviewSrc2]= useState("");
     const [location, setLocation] = useState("");
+    const [saveBtnText, setSaveBtnText]= useState("");
+    const [saveBtnStyle, setSaveBtnStyle]= useState("");
+    const [deleteBtnStyle, setDeleteBtnStyle]= useState("");
     const fields:FieldModel[] = useSelector((state) => state.FieldData);
     const dispatch = useDispatch();
 
@@ -63,7 +66,11 @@ export function Field() {
             };
         }, []);
     function saveBtnOnAction() {
-        dispatch(saveField(new FieldModel(fieldName, extentSize, previewSrc1, previewSrc2,location)));
+        if (saveBtnText === "Update") {
+            dispatch(updateField(new FieldModel(fieldName, extentSize, previewSrc1, previewSrc2,location)));
+        }else {
+            dispatch(saveField(new FieldModel(fieldName, extentSize, previewSrc1, previewSrc2,location)));
+        }
         clearForm();
     }
     const clearForm = () => {
@@ -72,6 +79,9 @@ export function Field() {
         setPreviewSrc1("");
         setPreviewSrc2("");
         setLocation("");
+        setSaveBtnText("Save");
+        setDeleteBtnStyle('hidden');
+        setSaveBtnStyle("btn-primary btn btn-block");
         if (fileInputRef1.current) {
             fileInputRef1.current.value = "";
         }
@@ -79,8 +89,9 @@ export function Field() {
             fileInputRef2.current.value = "";
         }
     }
-    function deleteField() {
-        console.log("delete field");
+    function deleteBtnOnAction() {
+        dispatch(deleteField(fieldName))
+        clearForm();
     }
     const loadSelectedField = ( field:FieldModel) => {
         setFieldName(field.fieldName);
@@ -88,6 +99,9 @@ export function Field() {
         setPreviewSrc1(field.image1);
         setPreviewSrc2(field.image2);
         setLocation(field.location);
+        setSaveBtnText("Update")
+        setSaveBtnStyle("btn-warning btn btn-block")
+        setDeleteBtnStyle("btn-danger btn btn-block")
     }
     return (
         <>
@@ -168,14 +182,14 @@ export function Field() {
                                     <Button
                                         btnOnAction={saveBtnOnAction}
                                         id="saveBtn"
-                                        style={"btn-primary btn btn-block"}
+                                        style={saveBtnStyle || "btn-primary btn btn-block"}
                                     >
-                                        Save
+                                        {saveBtnText || "Save"}
                                     </Button>
                                     <Button
-                                        btnOnAction={deleteField}
-                                        id="fieldDeleteBtn"
-                                        style={"btn btn-danger btn-block"}
+                                        btnOnAction={deleteBtnOnAction}
+                                        id="deleteBtn"
+                                        style={deleteBtnStyle || "hidden"}
                                     >
                                         Delete
                                     </Button>
