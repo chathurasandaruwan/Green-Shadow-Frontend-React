@@ -3,7 +3,7 @@ export function Table(props:any) {
         <div className={props.firstDivClass}>
             <div className={props.secondDivClass}>
                 <table id={props.id} className={props.tableClass}>
-                    <thead>
+                    <thead className={props.theadClass}>
                     <tr>
                         {props.headers.map((header:string, index:number) => (
                             <th key={index} scope="col">

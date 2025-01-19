@@ -5,6 +5,7 @@ import {Header} from "../component/Header.tsx";
 import {InputText} from "../component/InputText.tsx";
 import {InputImage} from "../component/InputImage.tsx";
 import {Button} from "../component/Button.tsx";
+import {Table} from "../component/Table.tsx";
 export function Field() {
     const fileInputRef1 = useRef<HTMLInputElement>(null);
     const fileInputRef2 = useRef<HTMLInputElement>(null);
@@ -172,8 +173,27 @@ export function Field() {
                                     </Button>
                                 </div>
                             </div>
-
                         </form>
+                    </div>
+                </div>
+            </section>
+            <section id="fieldTblCard" className="py-4 bg-light">
+                <div className="container">
+                    <div className="custCard shadow-sm">
+                        <Table
+                            firstDivClass='card-body'
+                            secondDivClass='table-responsive'
+                            id='fieldTable'
+                            tableClass="table table-hover table-nowrap align-middle"
+                            theadClass="table-light"
+                            headers = {[
+                                "Name",
+                                "Extent size",
+                                "image1",
+                                "image2",
+                                "Location",
+                            ]}
+                        />
                     </div>
                 </div>
             </section>
