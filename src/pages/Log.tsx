@@ -27,8 +27,12 @@ export function Log() {
     const [fieldName, setFieldName]= useState("");
     const [extentSize, setExtentSize]= useState("");
     const [previewSrcField, setPreviewSrcField]= useState("");
+    const [cropName, setCropName]= useState("");
+    const [scientificName, setScientificName]= useState("");
+    const [category, setCategory]= useState("");
     const [staffModelIsVisible, setStaffModelIsVisible]= useState(false);
     const [fieldModelIsVisible, setFieldModelIsVisible]= useState(false);
+    const [cropModelIsVisible, setCropModelIsVisible]= useState(false);
     const [selectedStaff, setSelectedStaff]= useState<string[]>([]);
     const [selectedCrop, setSelectedCrop]= useState<string[]>([]);
     const [selectedField, setSelectedField]= useState<string[]>([]);
@@ -55,9 +59,14 @@ export function Log() {
         setSelectedField([...selectedField,fieldName]);
         setFieldName("")
     }
+    function setSelectedCropList() {
+        setSelectedCrop([...selectedCrop,cropName]);
+        setCropName("")
+    }
 
     return (
         <>
+            {/*main*/}
             <section id="saveLog">
                 <div className="container">
                     <Header>Log</Header>
@@ -122,9 +131,7 @@ export function Log() {
                                 <LButton
                                     id="selectCropBtn"
                                     icon="fa fa-crop"
-                                    btnAction={() => {
-                                        alert("select Crop model")
-                                    }}
+                                    btnAction={() => setCropModelIsVisible(true)}
                                 >
                                     Select Crops
                                 </LButton>
@@ -142,6 +149,7 @@ export function Log() {
                                 </OneColTable>
                                 <OneColTable
                                     id="cropListTbl"
+                                    tbody={selectedCrop.map((crop, index) => <tr key={index}>{crop}</tr>)}
                                 >Crops
                                 </OneColTable>
                             </div>
@@ -169,6 +177,7 @@ export function Log() {
                     </div>
                 </div>
             </section>
+            {/*staff model*/}
             <div className={`modal fade ${staffModelIsVisible ? 'show d-block' : 'hidden'}`} id="staffModal"
                  tabIndex={-1} role="dialog" aria-labelledby="staffModelLabel"
                  aria-hidden="true">
@@ -320,7 +329,9 @@ export function Log() {
                     </div>
                 </div>
             </div>
-            <div className={`modal fade ${fieldModelIsVisible ? 'show d-block' : 'hidden'}`} id="fieldModal" tabIndex={-1} role="dialog" aria-labelledby="fieldModelLabel"
+            {/*field model*/}
+            <div className={`modal fade ${fieldModelIsVisible ? 'show d-block' : 'hidden'}`} id="fieldModal"
+                 tabIndex={-1} role="dialog" aria-labelledby="fieldModelLabel"
                  aria-hidden="true">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content">
@@ -385,6 +396,82 @@ export function Log() {
                             <Button
                                 btnOnAction={() => setFieldModelIsVisible(false)}
                                 id="btnFieldClose"
+                                style={"btn btn-danger"}
+                            >
+                                Close
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/*crop model*/}
+            <div className={`modal fade ${cropModelIsVisible ? 'show d-block' : 'hidden'}`} id="cropModal" tabIndex={-1} role="dialog" aria-labelledby="cropModelLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog modal-xl" role="document">
+                    <div className="modal-content ">
+                        <ModalHeader
+                            id='cropModelLabel'
+                            closeBtnOnAction={() => setCropModelIsVisible(false)}
+                        >Select Crop</ModalHeader>
+                        <div className="modal-body">
+                            <div className="container">
+                                <div className="form-wrap">
+                                    <form id="crop-select-form">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <Select
+                                                    id="dropdownCropName"
+                                                    value={cropName}
+                                                    setItems={setCropName}
+                                                    options={[
+                                                        {value: "Crop1", name: "Crop1"},
+                                                        {value: "Crop2", name: "Crop2"},
+                                                        {value: "Crop3", name: "Crop3"},
+                                                        {value: "Crop4", name: "Crop4"},
+                                                        {value: "Crop5", name: "Crop5"},
+                                                    ]}
+                                                >
+                                                    Crop Name
+                                                </Select>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="scientificNameDum"
+                                                    item={scientificName}
+                                                    disable={true}
+                                                >
+                                                    Scientific Name
+                                                </InputText>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="categoryDum"
+                                                    item={category}
+                                                    disable={true}
+                                                >
+                                                    Category
+                                                </InputText>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <Button
+                                btnOnAction={setSelectedCropList}
+                                id="btnCropAdd"
+                                style="btn-primary btn btn-block"
+                            >
+                                Add
+                            </Button>
+                            <Button
+                                btnOnAction={() => setCropModelIsVisible(false)}
+                                id="btnCropClose"
                                 style={"btn btn-danger"}
                             >
                                 Close
