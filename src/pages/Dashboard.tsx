@@ -1,6 +1,7 @@
 import {DashboardCard} from "../component/DashboardCard.tsx";
 
 export function Dashboard() {
+
     return (
         <>
             <main id="main" className="container shadow-lg rounded-4 mt-5">
@@ -29,7 +30,6 @@ export function Dashboard() {
                                 Active Equipment
                             </DashboardCard>
                             <DashboardCard
-                                // h1text={"25°C <i className=\"fas fa-sun\"></i>"}
                                 h1text="25°C ☀️"
                             >
                                 Sunny
@@ -38,6 +38,7 @@ export function Dashboard() {
                     </section>
                 </div>
             </main>
+            <section id="chart" className="container mt-lg-5"></section>
         </>
     );
 }
