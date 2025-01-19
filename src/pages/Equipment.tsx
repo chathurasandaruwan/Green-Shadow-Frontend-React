@@ -3,6 +3,8 @@ import {useState} from "react";
 import {Select} from "../component/Select.tsx";
 import {InputRadio} from "../component/InputRadio.tsx";
 import {Button} from "../component/Button.tsx";
+import {Header} from "../component/Header.tsx";
+import {Table} from "../component/Table.tsx";
 
 export function Equipment() {
     const [equipmentName, setEquipmentName] = useState("");
@@ -34,6 +36,30 @@ export function Equipment() {
 
     return (
         <>
+            <section id="equipmentTblCard" className="container">
+                {/*<header className="header animatedBg rounded-4 shadow-lg">
+                    <h1 id="title" className="text-center">Equipment Manage</h1>
+                    <p id="description" className="text-center">
+                        Please use this form to fill out your Equipment details.
+                    </p>
+                </header>*/}
+                <Header>Equipment</Header>
+                <div className=" equipmentTbl">
+                    <Table
+                        firstDivClass='row'
+                        secondDivClass='col-12'
+                        id='equipmentTbl'
+                        tableClass="table"
+                        headers = {[
+                            "Name",
+                            "Type",
+                            "Status",
+                            "Field name",
+                            "Staff name",
+                        ]}
+                    />
+                </div>
+            </section>
             <section id="saveEquipment">
                 <div className="container">
                     <div className="form-wrap">
@@ -56,11 +82,11 @@ export function Equipment() {
                                         value={type}
                                         setItems={setType}
                                         options={[
-                                            { value: "Mechanical", name: "Mechanical" },
-                                            { value: "Electrical", name: "Electrical" },
+                                            {value: "Mechanical", name: "Mechanical"},
+                                            {value: "Electrical", name: "Electrical"},
                                         ]}
                                     >
-                                       Type
+                                        Type
                                     </Select>
                                 </div>
                             </div>
@@ -98,10 +124,10 @@ export function Equipment() {
                                         value={staffName}
                                         setItems={setStaffName}
                                         options={[
-                                            { value: "kamal", name: "kamal" },
-                                            { value: "ranil", name: "ranil" },
-                                            { value: "nimal", name: "nimal" },
-                                            { value: "sahan", name: "sahan" },
+                                            {value: "kamal", name: "kamal"},
+                                            {value: "ranil", name: "ranil"},
+                                            {value: "nimal", name: "nimal"},
+                                            {value: "sahan", name: "sahan"},
                                         ]}
                                     >
                                         Staff Name
@@ -150,10 +176,10 @@ export function Equipment() {
                                         value={fieldName}
                                         setItems={setFieldName}
                                         options={[
-                                            { value: "Field1", name: "Field1" },
-                                            { value: "Field2", name: "Field2" },
-                                            { value: "Field3", name: "Field3" },
-                                            { value: "Field4", name: "Field4" },
+                                            {value: "Field1", name: "Field1"},
+                                            {value: "Field2", name: "Field2"},
+                                            {value: "Field3", name: "Field3"},
+                                            {value: "Field4", name: "Field4"},
                                         ]}
                                     >
                                         Field Name
