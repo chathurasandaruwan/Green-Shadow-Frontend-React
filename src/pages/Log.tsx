@@ -24,11 +24,14 @@ export function Log() {
     const [designation, setDesignation]= useState("");
     const [role, setRole]= useState("");
     const [staffName, setStaffName]= useState("");
+    const [fieldName, setFieldName]= useState("");
+    const [extentSize, setExtentSize]= useState("");
+    const [previewSrcField, setPreviewSrcField]= useState("");
     const [staffModelIsVisible, setStaffModelIsVisible]= useState(false);
+    const [fieldModelIsVisible, setFieldModelIsVisible]= useState(false);
     const [selectedStaff, setSelectedStaff]= useState<string[]>([]);
-    const [selectedCrop, setSelectedCrop]= useState([]);
-    const [selectedField, setSelectedField]= useState([]);
-
+    const [selectedCrop, setSelectedCrop]= useState<string[]>([]);
+    const [selectedField, setSelectedField]= useState<string[]>([]);
 
 
     const clearForm = () => {
@@ -44,11 +47,13 @@ export function Log() {
     function AddLog() {
 
     }
-    function closeStaffModal() {
-        setStaffModelIsVisible(false);
-    }
     function setSelectedStaffList() {
         setSelectedStaff([...selectedStaff,staffName]);
+        setStaffName("")
+    }
+    function setSelectedFieldList() {
+        setSelectedField([...selectedField,fieldName]);
+        setFieldName("")
     }
 
     return (
@@ -103,16 +108,14 @@ export function Log() {
                                 <LButton
                                     id="selectStaffBtn"
                                     icon="fa fa-users"
-                                    btnAction={()=>setStaffModelIsVisible(true)}
+                                    btnAction={() => setStaffModelIsVisible(true)}
                                 >
                                     Select Staffs
                                 </LButton>
                                 <LButton
                                     id="selectFieldBtn"
                                     icon="far fa-clone"
-                                    btnAction={() => {
-                                        alert("select Field model")
-                                    }}
+                                    btnAction={() => setFieldModelIsVisible(true)}
                                 >
                                     Select Field
                                 </LButton>
@@ -134,6 +137,7 @@ export function Log() {
                                 </OneColTable>
                                 <OneColTable
                                     id="fieldListTbl"
+                                    tbody={selectedField.map((field, index) => <tr key={index}>{field}</tr>)}
                                 >Fields
                                 </OneColTable>
                                 <OneColTable
@@ -165,13 +169,14 @@ export function Log() {
                     </div>
                 </div>
             </section>
-            <div className={`modal fade ${staffModelIsVisible ? 'show d-block' : 'hidden'}`} id="staffModal" tabIndex={-1} role="dialog" aria-labelledby="staffModelLabel"
+            <div className={`modal fade ${staffModelIsVisible ? 'show d-block' : 'hidden'}`} id="staffModal"
+                 tabIndex={-1} role="dialog" aria-labelledby="staffModelLabel"
                  aria-hidden="true">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content ">
                         <ModalHeader
                             id="staffModelLabel"
-                            closeBtnOnAction={closeStaffModal}
+                            closeBtnOnAction={() => setStaffModelIsVisible(false)}
                         >Select Staff</ModalHeader>
                         <div className="modal-body">
                             <div className="container">
@@ -305,8 +310,81 @@ export function Log() {
                                 Add
                             </Button>
                             <Button
-                                btnOnAction={closeStaffModal}
+                                btnOnAction={() => setStaffModelIsVisible(false)}
                                 id="btnStaffClose"
+                                style={"btn btn-danger"}
+                            >
+                                Close
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={`modal fade ${fieldModelIsVisible ? 'show d-block' : 'hidden'}`} id="fieldModal" tabIndex={-1} role="dialog" aria-labelledby="fieldModelLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog modal-xl" role="document">
+                    <div className="modal-content">
+                        <ModalHeader
+                            id="fieldModelLabel"
+                            closeBtnOnAction={() => setFieldModelIsVisible(false)}
+                        >Select Field
+                        </ModalHeader>
+                        <div className="modal-body">
+                            <div className="container">
+                                <div className="form-wrap">
+                                    <form id="field-select-form">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <Select
+                                                    id="dropdownFieldName"
+                                                    value={fieldName}
+                                                    setItems={setFieldName}
+                                                    options={[
+                                                        {value: "field1", name: "field1"},
+                                                        {value: "field2", name: "field2"},
+                                                        {value: "field3", name: "field3"},
+                                                        {value: "field4", name: "field4"},
+                                                        {value: "field5", name: "field5"},
+                                                    ]}
+                                                >
+                                                    Field Name
+                                                </Select>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <InputText
+                                                    type="text"
+                                                    id="extentSizeDum"
+                                                    item={extentSize}
+                                                    disable={true}
+                                                >
+                                                    Extent Size
+                                                </InputText>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <label htmlFor="fieldImg">Field image</label>
+                                                <div id="fieldImg" className="form-control-file">
+                                                    {previewSrcField &&
+                                                        <img id="previewImage" src={previewSrcField} alt="Preview"/>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <Button
+                                btnOnAction={setSelectedFieldList}
+                                id="btnFieldAdd"
+                                style="btn-primary btn btn-block"
+                            >
+                                Add
+                            </Button>
+                            <Button
+                                btnOnAction={() => setFieldModelIsVisible(false)}
+                                id="btnFieldClose"
                                 style={"btn btn-danger"}
                             >
                                 Close
