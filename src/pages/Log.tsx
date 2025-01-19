@@ -7,11 +7,14 @@ import {OneColTable} from "../component/OneColTable.tsx";
 import {Button} from "../component/Button.tsx";
 import {ModalHeader} from "../component/ModalHeader.tsx";
 import {Select} from "../component/Select.tsx";
+import {Log as LogModel} from "../models/Log.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {saveLog} from "../slices/LogSlice.ts";
+import {Table} from "../component/Table.tsx";
 
 export function Log() {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [logId, setLogId] = useState("");
-    const [Date, setDate] = useState("");
     const [details, setDetails] = useState("");
     const [previewSrc, setPreviewSrc]= useState("");
     const [lastName, setLastName]= useState("");
@@ -37,19 +40,25 @@ export function Log() {
     const [selectedCrop, setSelectedCrop]= useState<string[]>([]);
     const [selectedField, setSelectedField]= useState<string[]>([]);
 
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+
+    const logs:LogModel[] = useSelector(state => state.logData);
+    const dispatch = useDispatch();
 
     const clearForm = () => {
-        setLogId("001");
-        setDate("");
+        setLogId("LOG-001");
         setDetails("");
         setPreviewSrc("");
         setSelectedStaff([]);
+        setSelectedField([]);
+        setSelectedCrop([]);
         if (fileInputRef.current) {
             fileInputRef.current.value = "";
         }
     };
     function AddLog() {
-
+        dispatch(saveLog(new LogModel(logId,formattedDate,details,previewSrc,selectedStaff,selectedField,selectedCrop)));
     }
     function setSelectedStaffList() {
         setSelectedStaff([...selectedStaff,staffName]);
@@ -77,7 +86,7 @@ export function Log() {
                                     <InputText
                                         type="text"
                                         id="logIdTxt"
-                                        item={logId || "001"}
+                                        item={logId || "LOG-001"}
                                         disable={true}
                                     >
                                         Log Id
@@ -87,7 +96,7 @@ export function Log() {
                                     <InputText
                                         type="text"
                                         id="logDateLbl"
-                                        item={Date}
+                                        item={formattedDate}
                                         disable={true}
                                     >
                                         Date
@@ -174,6 +183,43 @@ export function Log() {
                             </div>
 
                         </form>
+                    </div>
+                </div>
+            </section>
+            <section id="logTblCard" className="py-4 bg-light">
+                <div className="container">
+                    <div className="custCard shadow-sm">
+                        <Table
+                            firstDivClass='card-body'
+                            secondDivClass='table-responsive'
+                            id='logTbl'
+                            tableClass="table table-hover table-nowrap align-middle"
+                            headers = {[
+                                "Id",
+                                "Date",
+                                "image",
+                                "Details",
+                                "Staff",
+                                "Field",
+                                "Crop",
+                            ]}
+                            tbody={logs.map((log, index) => (
+                                <tr key={index}>
+                                    <td>{log.logId}</td>
+                                    <td>
+                                        <img
+                                            src={log.image}
+                                            className="avatar avatar-sm rounded-circle me-2"
+                                            alt={'logImage'}
+                                        />
+                                    </td>
+                                    <td>{log.detail}</td>
+                                    <td>{log.StaffValuesList}</td>
+                                    <td>{log.fieldValuesList}</td>
+                                    <td>{log.cropValuesList}</td>
+                                </tr>
+                            ))}
+                        ></Table>
                     </div>
                 </div>
             </section>
@@ -405,7 +451,8 @@ export function Log() {
                 </div>
             </div>
             {/*crop model*/}
-            <div className={`modal fade ${cropModelIsVisible ? 'show d-block' : 'hidden'}`} id="cropModal" tabIndex={-1} role="dialog" aria-labelledby="cropModelLabel"
+            <div className={`modal fade ${cropModelIsVisible ? 'show d-block' : 'hidden'}`} id="cropModal" tabIndex={-1}
+                 role="dialog" aria-labelledby="cropModelLabel"
                  aria-hidden="true">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content ">

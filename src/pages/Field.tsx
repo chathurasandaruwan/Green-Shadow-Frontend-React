@@ -209,55 +209,6 @@ export function Field() {
             <section id="fieldTblCard" className="py-4 bg-light">
                 <div className="container">
                     <div className="custCard shadow-sm">
-                        {/*<div className="card-body">
-                            <div className="table-responsive">
-                                <table id="fieldTable" className="table table-hover table-nowrap align-middle">
-                                    <thead className="table-light">
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Extent Size</th>
-                                        <th scope="col">image1</th>
-                                        <th scope="col">image2</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="fieldTableBody">
-                                    <!--<tr>
-                                        <td>Field1</td>
-                                        <td>4000</td>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                        </td>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                        </td>
-                                        <td>
-                                            <ul>
-                                                <li>6.23211</li>
-                                                <li>120.2112</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Field2</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                        </td>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                        </td>
-                                        <td>
-                                            <ul>
-                                                <li>16.23211</li>
-                                                <li>12.2112</li>
-                                            </ul>
-                                        </td>
-                                    </tr>-->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>*/}
                         <Table
                             firstDivClass='card-body'
                             secondDivClass='table-responsive'
